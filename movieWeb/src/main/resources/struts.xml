@@ -5,10 +5,10 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-    <package name="Test" extends="json-default" strict-method-invocation="false">
-        <action name="test1" class="org.movieweb.dao.TestDao" method="mytest">
+    <package name="login" extends="json-default" strict-method-invocation="false">
+        <action name="login" class="org.movieweb.dao.TestDao" method="mytest">
             <result name="success" type="json">
-                <param name="root">message</param>
+                <param name="root">msg</param>
             </result>
         </action>
     </package>
