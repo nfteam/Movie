@@ -2,12 +2,13 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
     <!-- 持久化单元 -->
     <persistence-unit name="mysql_jpa">
-        <class>org.domian.entoty.Auditorium</class>
-        <class>org.domian.entoty.Cinema</class>
+        <!--<class>org.domian.entoty.Auditorium</class>-->
+        <!--<class>org.domian.entoty.Cinema</class>-->
+        <class>org.domian.entoty.Users</class>
         <!-- 配置hibernate属性 -->
         <properties>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://114.215.100.176:3306/Movie"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://114.215.100.176:3306/Movie?useUnicode=true&amp;characterEncoding=UTF-8"/>
             <property name="hibernate.connection.username" value="test01"/>
             <property name="hibernate.connection.password" value="liang"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
