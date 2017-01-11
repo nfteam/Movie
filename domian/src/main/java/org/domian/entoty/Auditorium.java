@@ -16,6 +16,7 @@ public class Auditorium {
     private Cinema cinema;
 
     @Id
+    @Column(name="a_id")
     public String getaId() {
         return aId;
     }
@@ -42,8 +43,8 @@ public class Auditorium {
         this.aNum = aNum;
     }
 
-    @OneToMany
-    @JoinColumn(name="a_id")
+    @ManyToOne
+    @JoinColumn(name="c_id")
     public Cinema getCinema() {
         return cinema;
     }

@@ -14,9 +14,11 @@ public class Cinema {
     private String cName;
     private String cPhoto;
     private String cAddress;
-    private Set<Auditorium> auditoriumid=new HashSet();
+    //一对多
+    private Set<Auditorium> a_id=new HashSet();
 
     @Id
+    @Column(name="c_id")
     public String getCid() {
         return cid;
     }
@@ -52,12 +54,12 @@ public class Cinema {
         this.cAddress = cAddress;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "a_id")
-    public Set<Auditorium> getAuditoriumid() {
-        return auditoriumid;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "cinema")
+    public Set<Auditorium> getA_id() {
+        return a_id;
     }
 
-    public void setAuditoriumid(Set<Auditorium> auditoriumid) {
-        this.auditoriumid = auditoriumid;
+    public void setA_id(Set<Auditorium> a_id) {
+        this.a_id = a_id;
     }
 }
