@@ -4,9 +4,12 @@ import org.junit.Test;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by LIANG on 2017/1/11.
+ * 电影
  */
 @Entity
 @Table(name="film_info")
@@ -22,6 +25,7 @@ public class Film {
     private Year year;
     private Region region;
     private filmType type;
+    private Set<Order> order=new HashSet<>();
 
     @Id
     @Column(name="f_id")
@@ -123,5 +127,14 @@ public class Film {
 
     public void setType(filmType type) {
         this.type = type;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "film")
+    public Set<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(Set<Order> order) {
+        this.order = order;
     }
 }

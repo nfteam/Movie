@@ -2,9 +2,15 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
     <!-- 持久化单元 -->
     <persistence-unit name="mysql_jpa">
-        <!--<class>org.domian.entoty.Auditorium</class>-->
-        <!--<class>org.domian.entoty.Cinema</class>-->
+        <class>org.domian.entoty.Auditorium</class>
+        <class>org.domian.entoty.Cinema</class>
         <class>org.domian.entoty.Users</class>
+        <class>org.domian.entoty.Film</class>
+        <class>org.domian.entoty.Order</class>
+        <class>org.domian.entoty.filmType</class>
+        <class>org.domian.entoty.Region</class>
+        <class>org.domian.entoty.Year</class>
+        <class>org.domian.entoty.Comment</class>
         <!-- 配置hibernate属性 -->
         <properties>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>

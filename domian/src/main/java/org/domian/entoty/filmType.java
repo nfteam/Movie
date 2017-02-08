@@ -6,6 +6,7 @@ import java.util.Set;
 
 /**
  * Created by LIANG on 2017/1/11.
+ *类型
  */
 @Entity
 @Table(name="type_info")

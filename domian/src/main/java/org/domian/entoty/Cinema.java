@@ -6,6 +6,7 @@ import java.util.Set;
 
 /**
  * Created by LIANG on 2017/1/11.
+ * 电影院实体
  */
 @Entity
 @Table(name="cinema_info")
@@ -16,6 +17,7 @@ public class Cinema {
     private String cAddress;
     //一对多
     private Set<Auditorium> a_id=new HashSet();
+    private Set<Order> order2=new HashSet<>();
 
     @Id
     @Column(name="c_id")
@@ -61,5 +63,14 @@ public class Cinema {
 
     public void setA_id(Set<Auditorium> a_id) {
         this.a_id = a_id;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "cinemas")
+    public Set<Order> getOrder2() {
+        return order2;
+    }
+
+    public void setOrder2(Set<Order> order2) {
+        this.order2 = order2;
     }
 }
