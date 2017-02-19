@@ -17,6 +17,7 @@ public class Users {
     private String pwd;
     private Date addTime;
     private Set<Order> order=new HashSet<>();
+    private Set<Comment> comments=new HashSet<>();
 
     @Id
     @Column(name="u_id")
@@ -55,12 +56,20 @@ public class Users {
         this.addTime = addTime;
     }
 
-   // @OneToMany(fetch = FetchType.EAGER,mappedBy = "users")
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "users")
     public Set<Order> getOrder() {
         return order;
     }
     public void setOrder(Set<Order> order) {
         this.order = order;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "users")
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 }

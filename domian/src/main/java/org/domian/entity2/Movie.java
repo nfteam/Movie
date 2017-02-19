@@ -28,6 +28,7 @@ public class Movie {
     private Date modifyTime;
     private Set<Shelves> shelves=new HashSet<>();
     private Set<Order> orders=new HashSet<>();
+    private Set<Comment> comments=new HashSet<>();
 
     @Id
     @Column(name = "m_id")
@@ -175,5 +176,14 @@ public class Movie {
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "movie")
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 }

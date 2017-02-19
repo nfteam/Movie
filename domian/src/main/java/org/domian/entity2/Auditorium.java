@@ -13,12 +13,16 @@ import java.util.Set;
 public class Auditorium {
     private String aId;//id
     private String aName;//名字
-    private String aLanguage;//语言
-    private String aNumber;//位子数量
+    private String aType;//影厅类型
+    private int aNumber;//位子数量
+    private int state;
+    private String aPhoto;
     private Cinema cinema;
     private Set<Screenings> screenin=new HashSet<>();
     private Set<Shelves> shelves=new HashSet<>();
     private Set<Order> orders=new HashSet<>();
+    private AuditoriumType auditoriumType;
+
 
     @Id
     @Column(name = "a_id")
@@ -38,19 +42,20 @@ public class Auditorium {
         this.aName = aName;
     }
 
-    public String getaLanguage() {
-        return aLanguage;
+    public String getaType() {
+        return aType;
     }
 
-    public void setaLanguage(String aLanguage) {
-        this.aLanguage = aLanguage;
+    public void setaType(String aType) {
+        this.aType = aType;
     }
 
-    public String getaNumber() {
+    @Column(name = "a_num")
+    public int getaNumber() {
         return aNumber;
     }
 
-    public void setaNumber(String aNumber) {
+    public void setaNumber(int aNumber) {
         this.aNumber = aNumber;
     }
 
@@ -89,5 +94,33 @@ public class Auditorium {
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
+    }
+
+    @Column(name = "state")
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    @Column(name = "a_photo")
+    public String getaPhoto() {
+        return aPhoto;
+    }
+
+    public void setaPhoto(String aPhoto) {
+        this.aPhoto = aPhoto;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="t_id")
+    public AuditoriumType getAuditoriumType() {
+        return auditoriumType;
+    }
+
+    public void setAuditoriumType(AuditoriumType auditoriumType) {
+        this.auditoriumType = auditoriumType;
     }
 }

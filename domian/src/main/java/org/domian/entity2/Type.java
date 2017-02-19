@@ -6,6 +6,7 @@ import java.util.Set;
 
 /**
  * Created by LIANG on 2017/2/14.
+ * 电影类型
  */
 @Entity
 @Table(name = "t_info")

@@ -17,6 +17,7 @@ public class Cinema {
     private String cAddress;//地址
     private String cTell;//电话
     private String cIntroduction;//简介
+    private City city;
     private Set<Auditorium> auditoriums=new HashSet<>();
     private Set<Shelves> shelves=new HashSet<>();
     private Set<Order> orders=new HashSet<>();
@@ -101,5 +102,15 @@ public class Cinema {
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 }
