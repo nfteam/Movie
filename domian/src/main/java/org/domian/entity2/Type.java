@@ -11,12 +11,13 @@ import java.util.Set;
 @Entity
 @Table(name = "t_info")
 public class Type {
-    private String tId;
-    private String tName;
+    private String tId;//id
+    private String tName;//类型名称
+    private int state;
     private Set<Movie> movies=new HashSet<>();
 
     @Id
-    @Column(name = "t_id")
+    @Column(name = "ty_id")
     public String gettId() {
         return tId;
     }
@@ -41,5 +42,14 @@ public class Type {
 
     public void setMovies(Set<Movie> movies) {
         this.movies = movies;
+    }
+
+    @Column(name = "state",columnDefinition="int default 1")
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }

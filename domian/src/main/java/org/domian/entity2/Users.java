@@ -12,10 +12,10 @@ import java.util.Set;
 @Table(name="user_info")
 public class Users {
 
-    private String uId;
-    private String phoneNum;
-    private String pwd;
-    private Date addTime;
+    private String uId;//id
+    private String phoneNum;//电话号码
+    private String pwd;//密码
+    private Date addTime;//添加时间
     private Set<Order> order=new HashSet<>();
     private Set<Comment> comments=new HashSet<>();
 

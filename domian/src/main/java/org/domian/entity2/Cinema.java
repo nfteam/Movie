@@ -17,7 +17,9 @@ public class Cinema {
     private String cAddress;//地址
     private String cTell;//电话
     private String cIntroduction;//简介
-    private City city;
+    private City city; //城市，多对一
+    private Manager manager;
+    private int state;
     private Set<Auditorium> auditoriums=new HashSet<>();
     private Set<Shelves> shelves=new HashSet<>();
     private Set<Order> orders=new HashSet<>();
@@ -112,5 +114,23 @@ public class Cinema {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    @Column(name = "state",columnDefinition="int default 1")
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    @OneToOne(cascade = {CascadeType.REMOVE,CascadeType.PERSIST},mappedBy = "cinema")
+    public Manager getManager() {
+        return manager;
+    }
+
+    public void setManager(Manager manager) {
+        this.manager = manager;
     }
 }

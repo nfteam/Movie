@@ -1,6 +1,7 @@
 package org.domian.entity2;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,10 +12,12 @@ import java.util.Set;
 @Entity
 @Table(name="s_info")
 public class Screenings {
-    private String sId;
-    private String sTime;
-    private double price;
-    private Auditorium auditorium;
+    private String sId;//id
+    private Date startTime;//开始时间
+    private Date  endTime;//结束时间
+    private Date addTime;
+    private double price;//价格
+    private Auditorium auditorium; //影厅
     private Set<Shelves> shelvesSet=new HashSet<>();
     private Set<Order> orders=new HashSet<>();
 
@@ -28,13 +31,31 @@ public class Screenings {
         this.sId = sId;
     }
 
-    @Column(name = "s_time")
-    public String getsTime() {
-        return sTime;
+    @Column(name = "start_time")
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public void setsTime(String sTime) {
-        this.sTime = sTime;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    @Column(name = "end_time")
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    @Column(name = "add_time")
+    public Date getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(Date addTime) {
+        this.addTime = addTime;
     }
 
     @Column(name = "s_price")

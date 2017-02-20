@@ -13,8 +13,9 @@ import java.util.Set;
 @Entity
 @Table(name="year_info")
 public class Year {
-    private String Id;
-    private String particular;
+    private String Id;//id
+    private String particular;//年份
+    private int state;
     private Set<Movie> movies=new HashSet<>();
 
     @Id
@@ -43,5 +44,14 @@ public class Year {
 
     public void setMovies(Set<Movie> movies) {
         this.movies = movies;
+    }
+
+    @Column(name = "state",columnDefinition="int default 1")
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }

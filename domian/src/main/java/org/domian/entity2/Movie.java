@@ -12,20 +12,20 @@ import java.util.Set;
 @Entity
 @Table(name = "m_info")
 public class Movie {
-    private String mId;
-    private String mName;
-    private String mDescribe;
-    private String mDuration;
-    private String mDirector;
-    private String mStar;
-    private String mPhoto;
-    private Date addTime;
-    private String photoList;
-    private Year year;
-    private Type type;
-    private Region region;
-    private int state;
-    private Date modifyTime;
+    private String mId;//id
+    private String mName;//名字
+    private String mDescribe;//描述
+    private String mDuration;//时长
+    private String mDirector;//导演
+    private String mStar;//主演
+    private String mPhoto;//图片
+    private Date addTime;//添加时间
+    private String photoList;//图片集
+    private Year year;//年份
+    private Type type;//类型
+    private Region region;//区域
+    private int state;//状态
+    private Date modifyTime;//修改时间
     private Set<Shelves> shelves=new HashSet<>();
     private Set<Order> orders=new HashSet<>();
     private Set<Comment> comments=new HashSet<>();
@@ -123,7 +123,7 @@ public class Movie {
     }
 
     @ManyToOne
-    @JoinColumn(name = "t_id")
+    @JoinColumn(name = "ty_id")
     public Type getType() {
         return type;
     }

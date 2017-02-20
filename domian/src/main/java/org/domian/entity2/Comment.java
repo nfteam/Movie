@@ -10,11 +10,11 @@ import java.util.Date;
 @Entity
 @Table(name = "comment_info")
 public class Comment {
-    private String cId;
-    private String cValue;
-    private Date cTime;
-    private Users users;
-    private Movie movie;
+    private String cId; //id
+    private String cValue;//内容
+    private Date cTime;//评论时间
+    private Users users;//用户
+    private Movie movie;//评论的电影
 
     @Id
     @Column(name = "c_id")

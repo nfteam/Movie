@@ -13,8 +13,8 @@ import java.util.Set;
 @Entity
 @Table(name="region_info")
 public class Region {
-    private String rId;
-    private String region;
+    private String rId;//id
+    private String region;//地区
     private Set<Movie> movies=new HashSet<>();
 
     @Id

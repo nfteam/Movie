@@ -10,8 +10,9 @@ import java.util.Set;
 @Entity
 @Table(name = "city_info")
 public class City {
-    private String cId;
-    private String cName;
+    private String cId;//id
+    private String cName;//城市
+    private int state;
     private Set<Cinema> cinema=new HashSet<>();
 
     @Id
@@ -40,6 +41,15 @@ public class City {
 
     public void setCinema(Set<Cinema> cinema) {
         this.cinema = cinema;
+    }
+
+    @Column(name = "state")
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }
 

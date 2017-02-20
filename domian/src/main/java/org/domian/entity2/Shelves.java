@@ -10,14 +10,14 @@ import java.util.Date;
 @Entity
 @Table(name = "sh_info")
 public class Shelves {
-    private String sId;
-    private Date addTime;
-    private String offShelfTime;
-    private Cinema cinema;
-    private Auditorium auditorium;
-    private Screenings screenings;
-    private Movie movie;
-    private int state;
+    private String sId;//id
+    private Date addTime;//添加时间
+    private String offShelfTime;//下架时间
+    private Cinema cinema;//电影院
+    private Auditorium auditorium;//影厅
+    private Screenings screenings;//场次
+    private Movie movie;//电影
+    private int state;//状态
 
     @Id
     @Column(name = "sh_id")

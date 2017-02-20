@@ -9,19 +9,19 @@ import java.util.Date;
 @Entity
 @Table(name = "o_info")
 public class Order {
-    private String oId;
-    private String orderId;
-    private Auditorium auditorium;
-    private Cinema cinema;
-    private Movie movie;
-    private Screenings screenings;
-    private Users users;
-    private Date addTime;
-    private Date paymentTime;
-    private int state;
-    private double price;
-    private int seatNum;
-    private String saet;
+    private String oId; //id
+    private String orderId;//订单编号
+    private Auditorium auditorium;//影厅
+    private Cinema cinema;//影院
+    private Movie movie;//电影
+    private Screenings screenings;//场次
+    private Users users;//用户
+    private Date addTime;//下单时间
+    private Date paymentTime;//结算时间
+    private int state;//状态
+    private double price;//价格
+    private int seatNum;//座位数量
+    private String saet;//座位号
 
     @Id
     @Column(name = "o_id")

@@ -15,9 +15,9 @@ public class Auditorium {
     private String aName;//名字
     private String aType;//影厅类型
     private int aNumber;//位子数量
-    private int state;
-    private String aPhoto;
-    private Cinema cinema;
+    private int state;//状态
+    private String aPhoto;//图片
+    private Cinema cinema;//电影院
     private Set<Screenings> screenin=new HashSet<>();
     private Set<Shelves> shelves=new HashSet<>();
     private Set<Order> orders=new HashSet<>();
@@ -115,7 +115,7 @@ public class Auditorium {
     }
 
     @ManyToOne
-    @JoinColumn(name="t_id")
+    @JoinColumn(name="au_ty_id")
     public AuditoriumType getAuditoriumType() {
         return auditoriumType;
     }
