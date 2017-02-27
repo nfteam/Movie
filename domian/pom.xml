@@ -11,33 +11,12 @@
     </parent>
     <artifactId>domain</artifactId>
     <packaging>jar</packaging>
-   <dependencies>
-       <!-- hibernate依赖 -->
-       <dependency>
-           <groupId>org.hibernate</groupId>
-           <artifactId>hibernate-core</artifactId>
-       </dependency>
-       <!-- for JPA -->
-       <dependency>
-           <groupId>org.hibernate</groupId>
-           <artifactId>hibernate-entitymanager</artifactId>
-       </dependency>
-       <!-- C3P0连接池 -->
-       <dependency>
-           <groupId>org.hibernate</groupId>
-           <artifactId>hibernate-c3p0</artifactId>
-       </dependency>
-       <!-- mysql驱动 -->
-       <dependency>
-           <groupId>mysql</groupId>
-           <artifactId>mysql-connector-java</artifactId>
-       </dependency>
-       <dependency>
-           <groupId>junit</groupId>
-           <artifactId>junit</artifactId>
-       </dependency>
-
-   </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+        </dependency>
+    </dependencies>
 
 
 </project>

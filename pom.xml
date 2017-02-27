@@ -8,14 +8,26 @@
     <artifactId>Movie</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+    <modules>
+        <module>domian</module>
+        <module>movieWeb</module>
+        <module>movieApp</module>
+        <module>CinemaSyetem</module>
+    </modules>
     <!-- 配置maven的常规属性 -->
     <properties>
         <!-- 设置整个maven项目的编码格式 -->
-        <project.build.sourceEncoding>UFT-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- 配置控制台输出参数的编码格式，解决乱码 -->
         <argLine>-Dfile.encoding=UTF-8</argLine>
+        <!-- 依赖版本 -->
+        <struts2.version>2.5.8</struts2.version>
+        <spring.version>4.3.6.RELEASE</spring.version>
+        <hibernate.version>5.2.8.Final</hibernate.version>
     </properties>
-    <!-- 编译配置 -->
+
+    <!-- 设置编译插件 -->
     <build>
         <plugins>
             <plugin>
@@ -26,77 +38,99 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-            <plugin>
-                <!-- 插件名称 -->
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <warSourceDirectory>web</warSourceDirectory>
-                    <webXml>web\WEB-INF\web.xml</webXml>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
+
+    <!-- 依赖管理,子类依据依赖需要自行引用 -->
     <dependencyManagement>
-        <!-- 配置依赖 -->
         <dependencies>
-            <!-- dependency里面指定需要依赖的项目或jar文件的GAV坐标 -->
+            <!-- struts2 -->
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts2-core</artifactId>
+                <version>${struts2.version}</version>
             </dependency>
-            <!-- mysql驱动 -->
+            <!-- struts2整合spring的插件 -->
+            <dependency>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts2-spring-plugin</artifactId>
+                <version>${struts2.version}</version>
+                <!-- 排除整合插件自动依赖的spring核心包，
+                不然可能会引起版本不一致或冲突的情况。所以使用exclusion
+                 排除循环依赖-->
+                <exclusions>
+                    <!-- 排除struts自动依赖的spring-core版本 -->
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-core</artifactId>
+                    </exclusion>
+                    <!-- 排除struts自动依赖的spring-beans版本 -->
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-beans</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!-- JSON插件 -->
+            <dependency>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts2-json-plugin</artifactId>
+                <version>${struts2.version}</version>
+            </dependency>
+            <!-- 引入aspectj的依赖模块 -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>1.8.9</version>
+            </dependency>
+            <!-- Spring context模块-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!-- 引入spring web模块 -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!-- 引入spring orm 整合hibernate-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!--  引入Spring tx事务管理模块-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!-- Hibernate依赖 -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <!-- JPA依赖支持，添加实体管理器 -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <!-- DBCP连接池 -->
+            <dependency>
+                <groupId>commons-dbcp</groupId>
+                <artifactId>commons-dbcp</artifactId>
+                <version>1.4</version>
+            </dependency>
+            <!--  mysql驱动 -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>5.1.35</version>
             </dependency>
-            <!-- 配置hibernate -->
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-core</artifactId>
-                <version>5.0.11.Final</version>
-            </dependency>
-            <!-- c3p0配置 -->
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-c3p0</artifactId>
-                <version>5.0.11.Final</version>
-            </dependency>
-            <!-- 配置JPA -->
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-entitymanager</artifactId>
-                <version>5.0.11.Final</version>
-            </dependency>
-            <!--servlet配置-->
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>3.0.1</version>
-            </dependency>
-            <!-- 添加GSON依赖 -->
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>2.7</version>
-            </dependency>
-
-            <!--json配置-->
-            <dependency>
-                <groupId>org.apache.struts</groupId>
-                <artifactId>struts2-json-plugin</artifactId>
-                <version>2.5.8</version>
-            </dependency>
-            <!-- 添加struts2依赖 -->
-            <dependency>
-                <groupId>org.apache.struts</groupId>
-                <artifactId>struts2-core</artifactId>
-                <version>2.5.8</version>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 </project>
