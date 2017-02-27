@@ -13,7 +13,7 @@
         <module>domian</module>
         <module>movieWeb</module>
         <module>movieApp</module>
-        <module>CinemaSyetem</module>
+        <module>CinemaSystem</module>
     </modules>
     <!-- 配置maven的常规属性 -->
     <properties>

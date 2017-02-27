@@ -1,7 +1,5 @@
 package org.domian.entoty;
 
-import org.junit.Test;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;

@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>CinemaSyetem</artifactId>
+    <artifactId>CinemaSystem</artifactId>
     <packaging>war</packaging>
 
     <!-- web打包插件 -->
