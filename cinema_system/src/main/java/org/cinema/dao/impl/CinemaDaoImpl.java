@@ -1,7 +1,7 @@
 package org.cinema.dao.impl;
 
 import org.cinema.dao.CinemaDao;
-import org.domian.entity2.Cinema;
+import org.domian.entity.Cinema;
 import org.springframework.stereotype.Repository;
 
 /**

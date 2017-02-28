@@ -1,5 +1,4 @@
-package org.domian.entoty;
-
+package org.domian.entity;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -13,13 +12,12 @@ import java.util.Set;
 @Table(name="user_info")
 public class Users {
 
-    private String uId;
-    private String phoneNum;
-    private String pwd;
-    private Date addTime;
+    private String uId;//id
+    private String phoneNum;//电话号码
+    private String pwd;//密码
+    private Date addTime;//添加时间
+    private Set<Order> order=new HashSet<>();
     private Set<Comment> comments=new HashSet<>();
-    private Set<Order> order4=new HashSet<>();
-    
 
     @Id
     @Column(name="u_id")
@@ -59,21 +57,19 @@ public class Users {
     }
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "users")
+    public Set<Order> getOrder() {
+        return order;
+    }
+    public void setOrder(Set<Order> order) {
+        this.order = order;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "users")
     public Set<Comment> getComments() {
         return comments;
     }
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
-    }
-
-
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "users")
-    public Set<Order> getOrder4() {
-        return order4;
-    }
-
-    public void setOrder4(Set<Order> order4) {
-        this.order4 = order4;
     }
 }

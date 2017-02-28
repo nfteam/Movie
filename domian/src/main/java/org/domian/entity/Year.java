@@ -1,4 +1,6 @@
-package org.domian.entoty;
+package org.domian.entity;
+
+import org.domian.entoty.Film;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,9 +13,10 @@ import java.util.Set;
 @Entity
 @Table(name="year_info")
 public class Year {
-    private String Id;
-    private String particular;
-    private Set<Film> films=new HashSet<>();
+    private String Id;//id
+    private String particular;//年份
+    private int state;
+    private Set<Movie> movies=new HashSet<>();
 
     @Id
     @Column(name="year_id")
@@ -35,11 +38,20 @@ public class Year {
     }
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "year")
-    public Set<Film> getFilms() {
-        return films;
+    public Set<Movie> getMovies() {
+        return movies;
     }
 
-    public void setFilms(Set<Film> films) {
-        this.films = films;
+    public void setMovies(Set<Movie> movies) {
+        this.movies = movies;
+    }
+
+    @Column(name = "state",columnDefinition="int default 1")
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }

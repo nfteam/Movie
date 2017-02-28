@@ -1,6 +1,6 @@
 package org.cinema.dao;
 
-import org.domian.entity2.Cinema;
+import org.domian.entity.Cinema;
 
 /**
  * Created by LIANG on 2017/2/27.

@@ -2,7 +2,7 @@ package org.cinema.service.impl;
 
 import org.cinema.dao.CinemaDao;
 import org.cinema.service.CinemaService;
-import org.domian.entity2.Cinema;
+import org.domian.entity.Cinema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

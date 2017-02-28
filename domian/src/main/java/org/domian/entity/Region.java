@@ -1,4 +1,4 @@
-package org.domian.entity2;
+package org.domian.entity;
 
 import org.domian.entoty.Film;
 

@@ -1,7 +1,7 @@
 package org.cinema.action;
 
 import org.cinema.service.CinemaService;
-import org.domian.entity2.Cinema;
+import org.domian.entity.Cinema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
