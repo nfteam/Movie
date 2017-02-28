@@ -37,4 +37,8 @@ public class CinemaAction {
         message=service.update(cinema);
         return "success";
     }
+
+    public String add(){
+        return "success";
+    }
 }
