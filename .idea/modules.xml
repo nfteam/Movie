@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Movie.iml" filepath="$PROJECT_DIR$/Movie.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cinema_system/cinema_system.iml" filepath="$PROJECT_DIR$/cinema_system/cinema_system.iml" />
       <module fileurl="file://$PROJECT_DIR$/domian/domian.iml" filepath="$PROJECT_DIR$/domian/domian.iml" />
       <module fileurl="file://$PROJECT_DIR$/movieApp/movieApp.iml" filepath="$PROJECT_DIR$/movieApp/movieApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/movieApp/movieApp.iml" filepath="$PROJECT_DIR$/movieApp/movieApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/movieWeb/movieWeb.iml" filepath="$PROJECT_DIR$/movieWeb/movieWeb.iml" />
       <module fileurl="file://$PROJECT_DIR$/movieWeb/movieWeb.iml" filepath="$PROJECT_DIR$/movieWeb/movieWeb.iml" />
     </modules>
   </component>

@@ -6,12 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="cinema_system" />
         <module name="domian" />
         <module name="movieApp" />
         <module name="movieWeb" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="cinema_system" target="1.8" />
       <module name="domian" target="1.8" />
       <module name="movieApp" target="1.8" />
       <module name="movieWeb" target="1.8" />

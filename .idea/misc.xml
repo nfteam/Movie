@@ -39,6 +39,7 @@
     </properties>
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/cinema_system" />
     <file type="web" url="file://$PROJECT_DIR$/movieApp" />
     <file type="web" url="file://$PROJECT_DIR$/movieWeb" />
   </component>
@@ -48,6 +49,7 @@
         <option value="$PROJECT_DIR$/domian/pom.xml" />
         <option value="$PROJECT_DIR$/movieApp/pom.xml" />
         <option value="$PROJECT_DIR$/movieWeb/pom.xml" />
+        <option value="$PROJECT_DIR$/cinema_system/pom.xml" />
       </list>
     </option>
   </component>
