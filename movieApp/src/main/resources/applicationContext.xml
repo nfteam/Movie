@@ -17,7 +17,7 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <!-- 数据源以及连接池属性 -->
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://114.215.100.176:3306/movie?useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="url" value="jdbc:mysql://114.215.100.176:3306/Movie?useUnicode=true&amp;characterEncoding=UTF-8"/>
         <property name="username" value="test01"/>
         <property name="password" value="liang"/>
         <property name="initialSize" value="5"/>
@@ -48,7 +48,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
         <!-- 指定实体的扫描路径 -->
-        <property name="packagesToScan" value="org.domian.entoty"/>
+        <property name="packagesToScan" value="org.domian.entity2"/>
     </bean>
 
     <!-- 配置JPA事务管理器-->

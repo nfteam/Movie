@@ -5,6 +5,7 @@ import java.util.Date;
 
 /**
  * Created by LIANG on 2017/2/20.
+ * 影院管理员
  */
 @Entity
 @Table(name = "manager_info")
