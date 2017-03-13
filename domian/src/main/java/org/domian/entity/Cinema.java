@@ -80,7 +80,7 @@ public class Cinema {
         this.cIntroduction = cIntroduction;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "cinema")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cinema")
     public Set<Auditorium> getAuditoriums() {
         return auditoriums;
     }
@@ -89,7 +89,7 @@ public class Cinema {
         this.auditoriums = auditoriums;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "cinema")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cinema")
     public Set<Shelves> getShelves() {
         return shelves;
     }
@@ -98,7 +98,7 @@ public class Cinema {
         this.shelves = shelves;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "cinema")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cinema")
     public Set<Order> getOrders() {
         return orders;
     }

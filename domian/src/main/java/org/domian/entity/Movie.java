@@ -160,7 +160,7 @@ public class Movie {
         this.modifyTime = modifyTime;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "movie")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "movie")
     public Set<Shelves> getShelves() {
         return shelves;
     }
@@ -169,7 +169,7 @@ public class Movie {
         this.shelves = shelves;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "movie")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "movie")
     public Set<Order> getOrders() {
         return orders;
     }
@@ -178,7 +178,7 @@ public class Movie {
         this.orders = orders;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "movie")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "movie")
     public Set<Comment> getComments() {
         return comments;
     }

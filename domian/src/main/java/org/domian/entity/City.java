@@ -34,7 +34,7 @@ public class City {
     public void setcName(String cName) {
         this.cName = cName;
     }
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "city")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "city")
     public Set<Cinema> getCinema() {
         return cinema;
     }

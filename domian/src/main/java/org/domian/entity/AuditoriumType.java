@@ -35,7 +35,7 @@ public class AuditoriumType {
         this.tType = tType;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "auditoriumType")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "auditoriumType")
     public Set<Auditorium> getAuditoriums() {
         return auditoriums;
     }

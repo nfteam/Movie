@@ -56,7 +56,7 @@ public class Users {
         this.addTime = addTime;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "users")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "users")
     public Set<Order> getOrder() {
         return order;
     }
@@ -64,7 +64,7 @@ public class Users {
         this.order = order;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "users")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "users")
     public Set<Comment> getComments() {
         return comments;
     }

@@ -77,7 +77,7 @@ public class Screenings {
         this.auditorium = auditorium;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "screenings")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "screenings")
     public Set<Shelves> getShelvesSet() {
         return shelvesSet;
     }
@@ -86,7 +86,7 @@ public class Screenings {
         this.shelvesSet = shelvesSet;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "screenings")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "screenings")
     public Set<Order> getOrders() {
         return orders;
     }
