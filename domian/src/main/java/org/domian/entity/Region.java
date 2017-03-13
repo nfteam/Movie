@@ -1,7 +1,5 @@
 package org.domian.entity;
 
-import org.domian.entoty.Film;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;

@@ -16,6 +16,7 @@ public class Cinema {
     private String cPhoto;//图片
     private String cAddress;//地址
     private String cTell;//电话
+    private String email;
     private String cIntroduction;//简介
     private City city; //城市，多对一
     private Manager manager;
@@ -132,5 +133,14 @@ public class Cinema {
 
     public void setManager(Manager manager) {
         this.manager = manager;
+    }
+
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
