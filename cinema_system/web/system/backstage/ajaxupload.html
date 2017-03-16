@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script>
+        $(function(){
+            $("#btn").on("click",function(){
+                //使用FormData来实现表单的封装和ajax上传
+                var formData = new FormData(document.getElementById("f1"));
+                alert(formData.name)
+                //使用jquery的ajax提交表单
+                $.ajax({
+                    url : "ajaxUpload", //请求的url
+                    type : "post", //请求类型
+                    data : formData, //表单数据
+                    processData : false, //让Jquery不处理发送的数据
+                    contentType : false,  //让Jquery不设置Content-Type请求头
+                    success : function(result){ // 成功响应后的回调函数
+                        if(result.uploadFile != undefined){
+                            $("#msg").append("<font color='red'>"+result.uploadFile+"</font>");
+                        }else{
+                            $("#msg").append("<font color='red'>"+result+"</font>");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="msg"></div>
+<form id="f1" enctype="multipart/form-data">
+    File:<input type="file" name="uploadFile"/><br/>
+    Readme:<input type="text" name="readme"/><br/>
+<!--    <img src="file/0.jpg">-->
+    <input id="btn" type="button" value="submit"/>
+
+</form>
+</body>
+</html>

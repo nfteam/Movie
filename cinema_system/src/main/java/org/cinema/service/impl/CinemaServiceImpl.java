@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("cinService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class CinemaServiceImpl<T> implements CinemaService {
+public class CinemaServiceImpl implements CinemaService {
     @Autowired
     private CinemaDao dao;
 
@@ -30,4 +30,17 @@ public class CinemaServiceImpl<T> implements CinemaService {
         }
         return message;
     }
+
+    @Override
+    public Cinema findCinema() {
+        Cinema cinema=dao.findCinema();
+        cinema.setOrders(null);
+        cinema.setShelves(null);
+        cinema.setAuditoriums(null);
+        cinema.getCity().setCinema(null);
+        cinema.setAuditoriumTypes(null);
+        return cinema;
+    }
+
+
 }

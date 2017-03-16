@@ -1,91 +1,264 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<meta name="renderer" content="webkit">
-<title></title>
-<link rel="stylesheet" href="css/pintuer.css">
-<link rel="stylesheet" href="css/admin.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" href="css/pintuer.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css"/>
+    <link rel="stylesheet" href="css/admin.css">
+    <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-slide.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
 </head>
 <body>
 <div class="panel admin-panel">
-  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加影厅</strong></div>
-  <div class="body-content">
-    <form method="post" class="form-x" action="">  
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加影厅</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="">
+            <div>
+                <div class="form-group" style="position: relative;z-index: 1;">
+                    <div class="label">
+                        <label>影厅名称：</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input w50" value="" name="title" data-validate="required:请输入标题"/>
+                        <div class="tips"></div>
+                    </div>
+                </div>
 
-      <div>
-      <div class="form-group" style="position: relative;z-index: 1;">
-        <div class="label">
-          <label>影厅名称：</label>
-        </div>
-        <div class="field">
-          <input type="text" class="input w50" value="" name="title" data-validate="required:请输入标题" />
-          <div class="tips"></div>
-        </div>
-      </div>
+                <div class="form-group" style="position: relative;z-index: 1;">
+                    <div class="label">
+                        <label>位置数量：</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input w50" value="" name="title" data-validate="required:请输入位置数量"/>
+                        <div class="tips"></div>
+                    </div>
+                </div>
 
-        <div class="form-group" style="position: relative;z-index: 1;">
-          <div class="label">
-            <label>位置数量：</label>
-          </div>
-          <div class="field">
-            <input type="text" class="input w50" value="" name="title" data-validate="required:请输入位置数量" />
-            <div class="tips"></div>
-          </div>
-        </div>
+                <div class="photo">
+                    <img src="../images/11.jpg" width="100%" height="180px"/>
+                    <div style="margin-top: 5px">
+                        <input type="file" name="uploadFile"
+                               style="width:70px;float:left;padding-top: 0px; margin-left: 4px;"/>
+                        <input type="button" value="上传"
+                               style="width:40px;float:left; border:1px solid #ccc;background-color:white;height:22px;line-height:12px;margin-top:0px;margin-left:50px;"/>
+                    </div>
+                </div>
 
-        <div class="photo">
-          <img src="../images/11.jpg" width="100%" height="180px"/>
-          <div  style="margin-top: 5px">
-            <input type="file" value="sdfs" />
-            <input type="button" value="sdfs"/>
-          </div>
+                <div condition="$iscid eq 1">
+                    <div class="form-group" style="position: relative;z-index: 1;">
+                        <div class="label">
+                            <label>影厅类型：</label>
+                        </div>
+                        <div class="field">
+                            <select name="cid" class="input w50">
+                                <option value="">请选择分类</option>
+                                <option value="">产品分类</option>
+                                <option value="">产品分类</option>
+                                <option value="">产品分类</option>
+                                <option value="">产品分类</option>
+                            </select>
+                            <div class="tips"></div>
+                        </div>
+                    </div>
 
-        </div>
+                </div>
+            </div>
+            <div class="form-group" style="position: relative;z-index: 1;">
+                <div class="label">
+                    <label>场次：</label>
+                </div>
+                <div class="field">
+                    <div id="div1"></div>
+                    <input type="button" class="button bg-main icon-check-square-o" value="添加" id="theButton"/>
+                </div>
+            </div>
 
-      <div condition="$iscid eq 1">
-        <div class="form-group" style="position: relative;z-index: 1;">
-          <div class="label">
-            <label>影厅类型：</label>
-          </div>
-          <div class="field">
-            <select name="cid" class="input w50">
-              <option value="">请选择分类</option>
-              <option value="">产品分类</option>
-              <option value="">产品分类</option>
-              <option value="">产品分类</option>
-              <option value="">产品分类</option>
-            </select>
-            <div class="tips"></div>
-          </div>
-        </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>其他属性：</label>
+                </div>
+                <div class="field" style="padding-top:8px;">
+                    正常 <input id="ishome" type="radio" name="state" value="1"/>
+                    维护 <input id="isvouch" type="radio" name="state" value="2"/>
+                </div>
+            </div>
+            </if>
 
-      </div>
-      </div>
-
-        <div class="form-group">
-          <div class="label">
-            <label>其他属性：</label>
-          </div>
-          <div class="field" style="padding-top:8px;"> 
-            正常 <input id="ishome"  type="radio" name="state" value="1"/>
-            维护 <input id="isvouch"  type="radio" name="state" value="2"/>
-          </div>
-        </div>
-      </if>
-
-      <div class="form-group">
-        <div class="label">
-          <label></label>
-        </div>
-        <div class="field">
-          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
-        </div>
-      </div>
-    </form>
-  </div>
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+                    <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
+<style type="text/css">
+    /*a {*/
+    /*color: #007bc4 !*#424242*!;*/
+    /*text-decoration: none;*/
+    /*}*/
 
-</body></html>
+    /*a:hover {*/
+    /*text-decoration: underline*/
+    /*}*/
+
+    /*ol, ul {*/
+    /*list-style: none*/
+    /*}*/
+
+    /*body {*/
+    /*height: 100%;*/
+    /*font: 12px/18px Tahoma, Helvetica, Arial, Verdana, "\5b8b\4f53", sans-serif;*/
+    /*color: #51555C;*/
+    /*}*/
+
+    /*img {*/
+    /*border: none*/
+    /*}*/
+
+    /*.demo {*/
+    /*width: 500px;*/
+    /*margin: 20px auto*/
+    /*}*/
+
+    /*.demo h4 {*/
+    /*height: 32px;*/
+    /*line-height: 32px;*/
+    /*font-size: 14px*/
+    /*}*/
+
+    /*.demo h4 span {*/
+    /*font-weight: 500;*/
+    /*font-size: 12px*/
+    /*}*/
+
+    /*.demo p {*/
+    /*line-height: 28px;*/
+    /*}*/
+
+    /*input {*/
+        /*width: 200px;*/
+        /*height: 20px;*/
+        /*line-height: 20px;*/
+        /*padding: 2px;*/
+        /*border: 1px solid #d3d3d3*/
+    /*}*/
+
+    /*pre {*/
+    /*padding: 6px 0 0 0;*/
+    /*color: #666;*/
+    /*line-height: 20px;*/
+    /*background: #f7f7f7*/
+    /*}*/
+
+    /*.ui-timepicker-div .ui-widget-header {*/
+    /*margin-bottom: 8px;*/
+    /*}*/
+
+    /*.ui-timepicker-div dl {*/
+    /*text-align: left;*/
+    /*}*/
+
+    .ui-timepicker-div dl dt {
+        height: 25px;
+        margin-bottom: -25px;
+    }
+
+    .ui-timepicker-div dl dd {
+        margin: 0 10px 10px 65px;
+    }
+
+    /*.ui-timepicker-div td {*/
+    /*font-size: 90%;*/
+    /*}*/
+
+    /*.ui-tpicker-grid-label {*/
+    /*background: none;*/
+    /*border: none;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*}*/
+
+    /*.ui_tpicker_hour_label, .ui_tpicker_minute_label, .ui_tpicker_second_label, .ui_tpicker_millisec_label, .ui_tpicker_time_label {*/
+    /*padding-left: 20px*/
+    /*}*/
+</style>
+</body>
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#theButton").click(function (){
+            //创建三个元素
+            var $txt = $("<form id='form'></form><input type='text' name='time' class='example_2'/><input type='text' name='endTime'class='example_2'/></form >");
+            var $btn = $("<input type='button' value='del'/>");
+            var $br = $("<br/>");
+            $btn.click( //设置删除按钮的onclick事件
+                function (){
+//                    var pa=$(".example_2").serialize();
+//                    alert(pa)
+                            $txt.remove();
+                            $btn.remove();
+                            $br.remove();
+                });
+            $("#div1").append($txt).append($btn).append($br);
+            $('.example_2').timepicker({
+                ampm: true,
+            });
+        });
+        $('#example_1').datetimepicker();
+
+        $('#example_3').datetimepicker({
+            showSecond: true,
+            showMillisec: true,
+            timeFormat: 'hh:mm:ss:l'
+        });
+        $('#example_4').timepicker({
+            ampm: true,
+            hourMin: 8,
+            hourMax: 16
+        });
+        $('#example_5').datetimepicker({
+            hour: 13,
+            minute: 15
+        });
+        $('#example_6').datetimepicker({
+            numberOfMonths: 2,
+            minDate: 0,
+            maxDate: 30
+        });
+        $('#example_7').timepicker({
+            hourGrid: 4,
+            minuteGrid: 10
+        });
+
+
+        var ex8 = $('#example_8');
+
+        ex8.datetimepicker();
+
+        $('#example_8_set_btn').click(function () {
+            ex8.datetimepicker('setDate', (new Date()));
+        });
+
+        $('#example_8_get_btn').click(function () {
+            alert(ex8.datetimepicker('getDate'));
+        });
+
+        $("#val").on("click",function () {
+            var par=$("#example_2").val();
+            alert(par)
+        });
+    });
+</script>
+
+</html>

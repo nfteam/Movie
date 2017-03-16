@@ -12,13 +12,13 @@ import java.util.Set;
 @Entity
 @Table(name = "m_info")
 public class Movie {
-    private String mId;//id
-    private String mName;//名字
-    private String mDescribe;//描述
-    private String mDuration;//时长
-    private String mDirector;//导演
-    private String mStar;//主演
-    private String mPhoto;//图片
+    private String movId;//id
+    private String movName;//名字
+    private String movDescribe;//描述
+    private String movDuration;//时长
+    private String movDirector;//导演
+    private String movStar;//主演
+    private String movPhoto;//图片
     private Date addTime;//添加时间
     private String photoList;//图片集
     private Year year;//年份
@@ -31,70 +31,70 @@ public class Movie {
     private Set<Comment> comments=new HashSet<>();
 
     @Id
-    @Column(name = "m_id")
-    public String getmId() {
-        return mId;
+    @Column(name = "mov_id")
+    public String getMovId() {
+        return movId;
     }
 
-    public void setmId(String mId) {
-        this.mId = mId;
+    public void setMovId(String movId) {
+        this.movId = movId;
     }
 
-    @Column(name = "m_name")
-    public String getmName() {
-        return mName;
+    @Column(name = "mov_name")
+    public String getMovName() {
+        return movName;
     }
 
-    public void setmName(String mName) {
-        this.mName = mName;
+    public void setMovName(String movName) {
+        this.movName = movName;
     }
 
-    @Column(name = "m_describe")
-    public String getmDescribe() {
-        return mDescribe;
+    @Column(name = "mov_describe")
+    public String getMovDescribe() {
+        return movDescribe;
     }
 
-    public void setmDescribe(String mDescribe) {
-        this.mDescribe = mDescribe;
+    public void setMovDescribe(String movDescribe) {
+        this.movDescribe = movDescribe;
     }
 
-    @Column(name = "m_duriation")
-    public String getmDuration() {
-        return mDuration;
+    @Column(name = "mov_duration")
+    public String getMovDuration() {
+        return movDuration;
     }
 
-    public void setmDuration(String mDuration) {
-        this.mDuration = mDuration;
+    public void setMovDuration(String movDuration) {
+        this.movDuration = movDuration;
     }
 
-    @Column(name = "m_director")
-    public String getmDirector() {
-        return mDirector;
+    @Column(name = "mov_director")
+    public String getMovDirector() {
+        return movDirector;
     }
 
-    public void setmDirector(String mDirector) {
-        this.mDirector = mDirector;
+    public void setMovDirector(String movDirector) {
+        this.movDirector = movDirector;
     }
 
-    @Column(name = "m_star")
-    public String getmStar() {
-        return mStar;
+    @Column(name = "mov_star")
+    public String getMovStar() {
+        return movStar;
     }
 
-    public void setmStar(String mStar) {
-        this.mStar = mStar;
+    public void setMovStar(String movStar) {
+        this.movStar = movStar;
     }
 
-    @Column(name = "m_phpto")
-    public String getmPhoto() {
-        return mPhoto;
+    @Column(name = "mov_photo")
+    public String getMovPhoto() {
+        return movPhoto;
     }
 
-    public void setmPhoto(String mPhoto) {
-        this.mPhoto = mPhoto;
+    public void setMovPhoto(String mPhoto) {
+        this.movPhoto = movPhoto;
     }
 
-    @Column(name = "m_addtime")
+    @Column(name = "mov_addTime")
     public Date getAddTime() {
         return addTime;
     }
@@ -103,7 +103,7 @@ public class Movie {
         this.addTime = addTime;
     }
 
-    @Column(name = "m_photoList")
+    @Column(name = "mov_photoList")
     public String getPhotoList() {
         return photoList;
     }
@@ -113,7 +113,7 @@ public class Movie {
     }
 
     @ManyToOne
-    @JoinColumn(name = "y_id")
+    @JoinColumn(name = "year_id")
     public Year getYear() {
         return year;
     }
@@ -123,7 +123,7 @@ public class Movie {
     }
 
     @ManyToOne
-    @JoinColumn(name = "ty_id")
+    @JoinColumn(name = "type_id")
     public Type getType() {
         return type;
     }
@@ -133,7 +133,7 @@ public class Movie {
     }
 
     @ManyToOne
-    @JoinColumn(name = "r_id")
+    @JoinColumn(name = "region_id")
     public Region getRegion() {
         return region;
     }
@@ -142,7 +142,7 @@ public class Movie {
         this.region = region;
     }
 
-    @Column(name = "m_state")
+    @Column(name = "mov_state")
     public int getState() {
         return state;
     }
@@ -151,7 +151,7 @@ public class Movie {
         this.state = state;
     }
 
-    @Column(name = "m_modifTime")
+    @Column(name = "mov_modifyTime")
     public Date getModifyTime() {
         return modifyTime;
     }

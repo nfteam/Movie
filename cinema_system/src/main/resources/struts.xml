@@ -5,4 +5,64 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
+    <package name="struts" extends="json-default">
+
+        <action name="citylist" class="cinAction" method="city">
+            <result type="json">
+                <param name="root">list</param>
+            </result>
+        </action>
+
+        <action name="findCinema" class="cinAction" method="findCinema">
+            <result type="json">
+                <param name="root">cinema</param>
+            </result>
+        </action>
+
+        <action name="update" class="cinAction" method="update">
+            <result type="json">
+                <param name="root">message</param>
+            </result>
+        </action>
+        <action name="ajaxUpload" class="Action" method="upload">
+            <!-- 引用拦截器 -->
+            <result type="json">
+                <param name="root">message</param>
+            </result>
+            <!-- 使用json结果集类型返回错误信息,用于ajax请求
+             struts会将fieldErrors序列化成json对象 -->
+            <result name="input" type="json">
+                <param name="root">fieldErrors</param>
+            </result>
+        </action>
+
+        <!--AuditoriumType查询-->
+        <action name="findType" class="auditoriumTypeAction" method="findAuditoriumType">
+            <result type="json">
+                <param name="root">list</param>
+            </result>
+        </action>
+
+        <action name="findByName" class="auditoriumTypeAction" method="add">
+            <result type="json">
+                <param name="root">message</param>
+            </result>
+        </action>
+        <action name="delete" class="auditoriumTypeAction" method="delete">
+            <result type="json">
+                <param name="root">message</param>
+            </result>
+        </action>
+        <action name="findById" class="auditoriumTypeAction" method="findById">
+            <result type="json">
+                <param name="root">auditoriumType</param>
+            </result>
+        </action>
+
+        <action name="updateType" class="auditoriumTypeAction" method="update">
+            <result type="json">
+                <param name="root">message</param>
+            </result>
+        </action>
+    </package>
 </struts>

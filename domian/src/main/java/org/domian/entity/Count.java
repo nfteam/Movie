@@ -12,19 +12,19 @@ import java.util.Date;
 @Entity
 @Table(name = "count_info")
 public class Count {
-    private String cId;
+    private String countId;
     private String typeNname;
     private int count;
     private Date time;
 
     @Id
-    @Column(name = "c_id")
-    public String getcId() {
-        return cId;
+    @Column(name = "count_id")
+    public String getCountId() {
+        return countId;
     }
 
-    public void setcId(String cId) {
-        this.cId = cId;
+    public void setCountId(String cId) {
+        this.countId = countId;
     }
 
     @Column(name = "typeName")

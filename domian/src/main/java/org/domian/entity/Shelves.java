@@ -8,9 +8,9 @@ import java.util.Date;
  * 上架
  */
 @Entity
-@Table(name = "sh_info")
+@Table(name = "shelves_info")
 public class Shelves {
-    private String sId;//id
+    private String shelvesId;//id
     private Date addTime;//添加时间
     private String offShelfTime;//下架时间
     private Cinema cinema;//电影院
@@ -21,15 +21,15 @@ public class Shelves {
 
     @Id
     @Column(name = "sh_id")
-    public String getsId() {
-        return sId;
+    public String getShelvesId() {
+        return shelvesId;
     }
 
-    public void setsId(String sId) {
-        this.sId = sId;
+    public void setShelvesId(String shelvesId) {
+        this.shelvesId = shelvesId;
     }
 
-    @Column(name = "s_addTime")
+    @Column(name = "sh_addTime")
     public Date getAddTime() {
         return addTime;
     }
@@ -38,7 +38,7 @@ public class Shelves {
         this.addTime = addTime;
     }
 
-    @Column(name = "s_offTime")
+    @Column(name = "sh_offTime")
     public String getOffShelfTime() {
         return offShelfTime;
     }
@@ -48,7 +48,7 @@ public class Shelves {
     }
 
     @ManyToOne
-    @JoinColumn(name = "c_id")
+    @JoinColumn(name = "cinema_id")
     public Cinema getCinema() {
         return cinema;
     }
@@ -58,7 +58,7 @@ public class Shelves {
     }
 
     @ManyToOne
-    @JoinColumn(name = "a_id")
+    @JoinColumn(name = "auditorium_id")
     public Auditorium getAuditorium() {
         return auditorium;
     }
@@ -68,7 +68,7 @@ public class Shelves {
     }
 
     @ManyToOne
-    @JoinColumn(name = "s_id")
+    @JoinColumn(name = "screenings_id")
     public Screenings getScreenings() {
         return screenings;
     }
@@ -78,7 +78,7 @@ public class Shelves {
     }
 
     @ManyToOne
-    @JoinColumn(name = "m_id")
+    @JoinColumn(name = "move_id")
     public Movie getMovie() {
         return movie;
     }
@@ -87,7 +87,7 @@ public class Shelves {
         this.movie = movie;
     }
 
-    @Column(name = "s_state")
+    @Column(name = "sh_state")
     public int getState() {
         return state;
     }

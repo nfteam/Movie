@@ -11,18 +11,18 @@ import java.util.Set;
 @Entity
 @Table(name="region_info")
 public class Region {
-    private String rId;//id
+    private String regionId;//id
     private String region;//地区
     private Set<Movie> movies=new HashSet<>();
 
     @Id
-    @Column(name="r_id")
-    public String getrId() {
-        return rId;
+    @Column(name="region_id")
+    public String getRegionId() {
+        return regionId;
     }
 
-    public void setrId(String rId) {
-        this.rId = rId;
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
     }
 
     @Column(name="region")

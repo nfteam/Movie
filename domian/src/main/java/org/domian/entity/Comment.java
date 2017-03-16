@@ -10,42 +10,42 @@ import java.util.Date;
 @Entity
 @Table(name = "comment_info")
 public class Comment {
-    private String cId; //id
-    private String cValue;//内容
-    private Date cTime;//评论时间
+    private String commId; //id
+    private String commValue;//内容
+    private Date commTime;//评论时间
     private Users users;//用户
     private Movie movie;//评论的电影
 
     @Id
-    @Column(name = "c_id")
-    public String getcId() {
-        return cId;
+    @Column(name = "comm_id")
+    public String getCommId() {
+        return commId;
     }
 
-    public void setcId(String cId) {
-        this.cId = cId;
+    public void setCommId(String commId) {
+        this.commId = commId;
     }
 
-    @Column(name = "c_value")
-    public String getcValue() {
-        return cValue;
+    @Column(name = "comm_value")
+    public String getCommValue() {
+        return commValue;
     }
 
-    public void setcValue(String cValue) {
-        this.cValue = cValue;
+    public void setCommValue(String commValue) {
+        this.commValue = commValue;
     }
 
-    @Column(name = "c_time")
-    public Date getcTime() {
-        return cTime;
+    @Column(name = "comm_time")
+    public Date getCommTime() {
+        return commTime;
     }
 
-    public void setcTime(Date cTime) {
-        this.cTime = cTime;
+    public void setCommTime(Date commTime) {
+        this.commTime = commTime;
     }
 
     @ManyToOne
-    @JoinColumn(name = "u_id")
+    @JoinColumn(name = "user_id")
     public Users getUsers() {
         return users;
     }
@@ -55,7 +55,7 @@ public class Comment {
     }
 
     @ManyToOne
-    @JoinColumn(name = "m_id")
+    @JoinColumn(name = "movie_id")
     public Movie getMovie() {
         return movie;
     }

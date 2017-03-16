@@ -9,30 +9,30 @@ import java.util.Set;
  * 电影类型
  */
 @Entity
-@Table(name = "t_info")
+@Table(name = "type_info")
 public class Type {
-    private String tId;//id
-    private String tName;//类型名称
+    private String typeId;//id
+    private String typeName;//类型名称
     private int state;
     private Set<Movie> movies=new HashSet<>();
 
     @Id
-    @Column(name = "ty_id")
-    public String gettId() {
-        return tId;
+    @Column(name = "type_id")
+    public String getTypeId() {
+        return typeId;
     }
 
-    public void settId(String tId) {
-        this.tId = tId;
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
     }
 
-    @Column(name = "t_name")
-    public String gettName() {
-        return tName;
+    @Column(name = "type_name")
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void settName(String tName) {
-        this.tName = tName;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "type")
@@ -44,7 +44,7 @@ public class Type {
         this.movies = movies;
     }
 
-    @Column(name = "state",columnDefinition="int default 1")
+    @Column(name = "state")
     public int getState() {
         return state;
     }

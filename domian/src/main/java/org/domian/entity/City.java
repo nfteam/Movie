@@ -10,29 +10,29 @@ import java.util.Set;
 @Entity
 @Table(name = "city_info")
 public class City {
-    private String cId;//id
-    private String cName;//城市
+    private String cityId;//id
+    private String cityName;//城市
     private int state;
     private Set<Cinema> cinema=new HashSet<>();
 
     @Id
-    @Column(name = "c_id")
-    public String getcId() {
-        return cId;
+    @Column(name = "city_id")
+    public String getCityId() {
+        return cityId;
     }
 
-    public void setcId(String cId) {
-        this.cId = cId;
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
     }
 
-    @Column(name = "c_name")
-    public String getcName() {
-        return cName;
+    @Column(name = "city_name")
+    public String getCityName() {
+        return cityName;
     }
 
 
-    public void setcName(String cName) {
-        this.cName = cName;
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "city")
     public Set<Cinema> getCinema() {
