@@ -11,22 +11,22 @@ import java.util.Set;
 @Entity
 @Table(name="year_info")
 public class Year {
-    private String Id;//id
+    private String yearId;//id
     private String particular;//年份
     private int state;
     private Set<Movie> movies=new HashSet<>();
 
     @Id
     @Column(name="year_id")
-    public String getId() {
-        return Id;
+    public String getYearId() {
+        return yearId;
     }
 
-    public void setId(String id) {
-        Id = id;
+    public void setYearId(String yearId) {
+        yearId = yearId;
     }
 
-    @Column(name="y_particular")
+    @Column(name="year_particular")
     public String getParticular() {
         return particular;
     }
@@ -44,7 +44,7 @@ public class Year {
         this.movies = movies;
     }
 
-    @Column(name = "state",columnDefinition="int default 1")
+    @Column(name = "state")
     public int getState() {
         return state;
     }

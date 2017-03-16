@@ -8,7 +8,7 @@
     <title>影厅类型</title>
     <link rel="stylesheet" href="css/pintuer.css">
     <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </head>
@@ -18,7 +18,7 @@
     <div class="padding border-bottom">
         <button type="button"  class="button border-yellow icon-plus-square-o">添加类型</button>
     </div>
-    <table class="table table-hover text-center">
+    <table class="table table-hover text-center" id="myType">
         <tr>
             <th width="5%">ID</th>
             <th>类型名称</th>
@@ -37,7 +37,7 @@
 
     </table>
 </div>
-<!-- 弹框修改信息 -->
+<!-- 弹框添加信息 -->
 <div id="add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -55,15 +55,47 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">名称</label>
                                 <div class="col-md-10">
-                                    <input id="Name" name="Name" type="text" class="form-control" placeholder="分类名称..." />
+                                    <input id="Name" name="auditoriumType.typeName" type="text" class="form-control" placeholder="分类名称..." />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer bg-info">
-                    <input type="hidden" id="ID" name="ID" />
                     <button type="button" class="btn btn-info" id="save">确定</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--修改信息弹框-->
+<div id="updateType" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">
+                    <i class="icon-pencil"></i>
+                    <span id="updateTitle" style="font-weight:bold">修改类型</span>
+                </h4>
+            </div>
+            <form class="form-horizontal form-bordered form-row-strippe" id="update"  data-toggle="validator" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">名称</label>
+                                <div class="col-md-10">
+                                    <input id="type" name="auditoriumType.typeName" type="text" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-info">
+                    <input type="hidden" name="auditoriumType.typeId" id="myTypeId">
+                    <button type="button" class="btn btn-info" id="confirm">确定</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
                 </div>
             </form>
@@ -72,8 +104,60 @@
 </div>
 <script>
         $(function () {
+            $.get("findType",function(result){
+                $.each(result,function (index, obj) {
+                    $("#myType tr:not(:first)").empty();
+                    $.each(obj.auditoriumTypes,function (index, obj) {
+                        $("#myType").append("<tr><td>"+(++index)+"</td><td>"+obj.typeName+"</td><td>"+
+                            "<div><a type='button' class='button border-main' href='javascript:void(0)' name='"+obj.typeId+"'><span class='icon-edit'></span>修改</a>"+
+                            "<a class='button border-red' href='javascript:void(0)' name='"+obj.typeId+"'><span class='icon-trash-o'></span> 删除</a></div></td></tr>")
+                    });
+
+//                    删除
+                    $(".border-red").on("click",function () {
+                        var params=$(this).attr("name");
+                      /*  alert(params);*/
+                      var confirm=window.confirm("确认删除!");
+                      if (confirm==true){
+                          $.post("delete",{"auditoriumType.typeId":params},function (result) {
+                              alert(result);
+                          });
+                      }
+
+                    }) ;
+
+//                  修改
+                    $(".border-main").on("click",function(){
+                        var id=$(this).attr("name");
+                        $.get("findById",{"auditoriumType.typeId":id},function (result) {
+                            $("#type").val(result.typeName);
+                            $("#myTypeId").val(result.typeId);
+//                            封装表单数据
+                            $("#confirm").on("click",function () {
+                                var pasams2=$("#update").serialize();
+                                $.post("updateType",pasams2,function (result) {
+                                    alert(result);
+                                    $("#updateType").modal("hide");
+                                    window.location.reload();
+                                })
+                            })
+                        });
+                        $("#updateType").modal("show");
+                    });
+                });
+            });
+
+//            查询
             $(".icon-plus-square-o").on("click",function () {
-                $(".fade").modal("show");
+                $("#Name").val(null);
+                $("#add").modal("show");
+                $("#save").unbind("click").on("click",function () {
+                    var param=$("#auditoriumType").serialize();
+                    $.get("findByName",param,function (result) {
+                        alert(result);
+                        $("#add").modal("hide");
+                    })
+                });
             });
         });
 </script>

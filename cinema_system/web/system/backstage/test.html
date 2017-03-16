@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-1.9.1.min.js"></script>
+</head>
+<script type="text/javascript">
+    $(document).ready(
+        function(){
+            $("#theButton").click(
+                function (){
+                    //创建三个元素
+                    var $txt = $("<input type='time' value='' size='20' name='theText' />");
+                    var $btn = $("<input type='button' value='del'/>");
+                    var $br = $("<br/>");
+                    $btn.click( //设置删除按钮的onclick事件
+                        function (){
+                            $txt.remove();
+                            $btn.remove();
+                            $br.remove();
+                        }
+                    )
+                    $("#div1").append($txt).append($btn).append($br);
+                }
+            )
+        }
+    )
+</script>
+<body>
+<div id="div1"></div>
+<input type="button" value="add" id="theButton" />
+</body>
+</html>

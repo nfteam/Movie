@@ -12,24 +12,24 @@ import java.util.Set;
 @Table(name="user_info")
 public class Users {
 
-    private String uId;//id
+    private String userId;//id
     private String phoneNum;//电话号码
-    private String pwd;//密码
+    private String password;//密码
     private Date addTime;//添加时间
     private Set<Order> order=new HashSet<>();
     private Set<Comment> comments=new HashSet<>();
 
     @Id
-    @Column(name="u_id")
-    public String getuId() {
-        return uId;
+    @Column(name="user_id")
+    public String getUserId() {
+        return userId;
     }
 
-    public void setuId(String uId) {
-        this.uId = uId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    @Column(name="u_phone")
+    @Column(name="user_phone")
     public String getPhoneNum() {
         return phoneNum;
     }
@@ -38,13 +38,13 @@ public class Users {
         this.phoneNum = phoneNum;
     }
 
-    @Column(name="u_pwd")
-    public String getPwd() {
-        return pwd;
+    @Column(name="user_pwd")
+    public String getPassword() {
+        return password;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Column(name="addTime")
@@ -56,7 +56,7 @@ public class Users {
         this.addTime = addTime;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "users")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "users")
     public Set<Order> getOrder() {
         return order;
     }
@@ -64,7 +64,7 @@ public class Users {
         this.order = order;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "users")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "users")
     public Set<Comment> getComments() {
         return comments;
     }

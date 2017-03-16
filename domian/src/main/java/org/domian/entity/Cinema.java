@@ -9,78 +9,79 @@ import java.util.Set;
  * 电影院
  */
 @Entity
-@Table(name="c_info")
+@Table(name="cin_info")
 public class Cinema {
-    private String cId;//id
-    private String cName;//名字
-    private String cPhoto;//图片
-    private String cAddress;//地址
-    private String cTell;//电话
-    private String email;
-    private String cIntroduction;//简介
+    private String cinId;//id
+    private String cinName;//名字
+    private String cinPhoto;//图片
+    private String cinAddress;//地址
+    private String cinTell;//电话
+    private String cinEmail;
+    private String cinIntroduction;//简介
     private City city; //城市，多对一
     private Manager manager;
     private int state;
     private Set<Auditorium> auditoriums=new HashSet<>();
     private Set<Shelves> shelves=new HashSet<>();
     private Set<Order> orders=new HashSet<>();
+    private Set<AuditoriumType> auditoriumTypes=new HashSet<>();
 
     @Id
-    @Column(name="c_id")
-    public String getcId() {
-        return cId;
+    @Column(name="cin_id")
+    public String getCinId() {
+        return cinId;
     }
 
-    public void setcId(String cId) {
-        this.cId = cId;
+    public void setCinId(String cinId) {
+        this.cinId = cinId;
     }
 
-    @Column(name = "c_name")
-    public String getcName() {
-        return cName;
+    @Column(name = "cin_name")
+    public String getCinName() {
+        return cinName;
     }
 
-    public void setcName(String cName) {
-        this.cName = cName;
+    public void setCinName(String cinName) {
+        this.cinName = cinName;
     }
 
-    @Column(name = "c_photo")
-    public String getcPhoto() {
-        return cPhoto;
+    @Column(name = "cin_photo")
+    public String getCinPhoto() {
+        return cinPhoto;
     }
 
-    public void setcPhoto(String cPhoto) {
-        this.cPhoto = cPhoto;
+    public void setCinPhoto(String cinPhoto) {
+        this.cinPhoto = cinPhoto;
     }
 
-    @Column(name = "c_address")
-    public String getcAddress() {
-        return cAddress;
+    @Column(name = "cin_address")
+    public String getCinAddress() {
+        return cinAddress;
     }
 
-    public void setcAddress(String cAddress) {
-        this.cAddress = cAddress;
+    public void setCinAddress(String cinAddress) {
+        this.cinAddress = cinAddress;
     }
 
-    @Column(name = "c_tell")
-    public String getcTell() {
-        return cTell;
+    @Column(name = "cin_tell")
+    public String getCinTell() {
+        return cinTell;
     }
 
-    public void setcTell(String cTell) {
-        this.cTell = cTell;
+    public void setCinTell(String cinTell) {
+        this.cinTell = cinTell;
     }
 
-    @Column(name = "c_Introduction")
-    public String getcIntroduction() {
-        return cIntroduction;
+    @Column(name = "cin_introduction")
+    public String getCinIntroduction() {
+        return cinIntroduction;
     }
 
-    public void setcIntroduction(String cIntroduction) {
-        this.cIntroduction = cIntroduction;
+    public void setCinIntroduction(String cinIntroduction) {
+        this.cinIntroduction = cinIntroduction;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "cinema")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cinema")
     public Set<Auditorium> getAuditoriums() {
         return auditoriums;
     }
@@ -89,7 +90,7 @@ public class Cinema {
         this.auditoriums = auditoriums;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "cinema")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cinema")
     public Set<Shelves> getShelves() {
         return shelves;
     }
@@ -98,13 +99,22 @@ public class Cinema {
         this.shelves = shelves;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "cinema")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cinema")
     public Set<Order> getOrders() {
         return orders;
     }
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cinema")
+    public Set<AuditoriumType> getAuditoriumTypes() {
+        return auditoriumTypes;
+    }
+
+    public void setAuditoriumTypes(Set<AuditoriumType> auditoriumTypes) {
+        this.auditoriumTypes = auditoriumTypes;
     }
 
     @ManyToOne
@@ -117,7 +127,7 @@ public class Cinema {
         this.city = city;
     }
 
-    @Column(name = "state",columnDefinition="int default 1")
+    @Column(name = "state")
     public int getState() {
         return state;
     }
@@ -135,12 +145,12 @@ public class Cinema {
         this.manager = manager;
     }
 
-    @Column(name = "email")
-    public String getEmail() {
-        return email;
+    @Column(name = "cin_email")
+    public String getCinEmail() {
+        return cinEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCinEmail(String cinEmail) {
+        this.cinEmail = cinEmail;
     }
 }

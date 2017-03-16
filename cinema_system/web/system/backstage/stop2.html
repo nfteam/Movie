@@ -1,200 +1,177 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> 商家管理中心-外卖人</title>
-<link rel="stylesheet" type="text/css" href="css/shangjiaAdmin.css">
+    <meta charset="UTF-8">
+    <title>店铺信息</title>
+    <link rel="stylesheet" type="text/css" href="css/shangjiaAdmin.css">
+    <script src="js/jquery-1.9.1.min.js"></script>
 </head>
+<script>
+    $(function () {
+
+
+        $.get("findCinema", function (result) {
+            $("#shopname").val(result.cinName);
+            $("#phone").val(result.cinTell);
+            $("#address").val(result.cinAddress);
+            $("#email").val(result.cinEmail);
+            $("#introduction").val(result.cinIntroduction);
+            type(result);
+            $("#imgshow").attr("src", result.cinPhoto);
+            $("#shoplogo").val(result.cinPhoto);
+            $("#cinemaId").val(result.cinId);
+            $("#state").val(result.state);
+        });
+        $(".xx").on("click", function () {
+            var params = $("#stopForm").serialize();
+            /*          alert(params)*/
+            $.post("update", params, function (result) {
+                alert(result);
+                window.location.reload();
+
+            });
+        });
+
+        upload();
+
+
+    });
+
+    function type(result) {
+        $.get("citylist", function (result2) {
+            $.each(result2, function (index, obj) {
+                if (result.city.cityId == obj.cinId) {
+                    $(".select").append("<option value='" + obj.cityId + "' selected='selected'>" + obj.cityName);
+                } else {
+                    $(".select").append("<option value='" + obj.cityId + "'>" + obj.cityName);
+                }
+
+            });
+        });
+    }
+
+    function upload() {
+        /*图片上传*/
+        $("#submitImg").on("click", function () {
+            var formData = new FormData(document.getElementById("stopForm"));
+            $.ajax({
+                url: "ajaxUpload", //请求的url
+                type: "post", //请求类型
+                data: formData, //表单数据
+                processData: false, //让Jquery不处理发送的数据
+                contentType: false,  //让Jquery不设置Content-Type请求头
+                success: function (result) { // 成功响应后的回调函数
+                    if(result!=null){
+                        $("#imgshow").attr("src", "../"+result);
+                        $("#shoplogo").val("../"+result);
+                    }else {
+                        alert(result);
+                    }
+//                    alert(result)
+                }
+            });
+        });
+    }
+</script>
 <body>
 <div style="position: fixed;top: 0;left: 0;right: 0;bottom: 0;z-index: -1;background:url(../images/background.png);"></div>
-  <div class="conWaiSet fr">
-            <div class="shopSetTop">
-            	<span>店铺设置</span>
+<div class="conWaiSet fr">
+    <div class="shopSetTop">
+        <span>店铺设置</span>
+    </div>
+    <div class="cl"></div>
+    <form id="stopForm" method="post" enctype="multipart/form-data">
+        <div class="jutiSet">
+            <div class="serxuanze">
+                <div class="xuanze_left">
+                    <span>影院名字：</span>
+                </div>
+                <div class="dianpu_right" style="width:387px;">
+                    <input type="text" style="width:387px;" id="shopname" name="cinema.cinName">
+
+                </div>
+                <div class="cl"></div>
             </div>
-             <div class="cl"></div>  
-                <form id="loginForm" method="post">
-                 <div class="jutiSet">
-        		     	<div class="serxuanze">
-                    		<div class="xuanze_left">
-                        	<span>影院名字：</span>
-                        </div>
-                        <div class="dianpu_right" style="width:387px;">
-                        	<input type="text" style="width:387px;" id="shopname" name="cinema.cName">
-                            
-                        </div>
-                        <div class="cl"></div>
-                    </div>
-                    <div class="serxuanze">
-                    	<div class="xuanze_left">
-                        	<span>店铺电话：</span>
-                        </div>
-                        <div class="dianpu_right" style="width:387px;">
-                        	<input type="text" style="width:387px;" id="phone" name="cinema.cTell">
-                            
-                        </div>
-                        <div class="cl"></div>
-                    </div>
-                     <div class="serxuanze">
-                         <div class="xuanze_left">
-                             <span>所在地区：</span>
-                         </div>
-                         <div class="btn-group">
-                             <div class="dianpu_right" style="width: 200px">
-                                 <select class="dianpu_right" style="width: 200px;">
-                                     <option>生生世世1</option>
-                                     <option>生生世世2</option>
-                                     <option>生生世世3</option>
-                                 </select>
-                             </div>
-                         </div>
-                         <div class="cl"></div>
-                     </div>
-                    
-                    <div class="upimg">
-                    	<div class="file_img">
-                        	 <img src="./商家管理中心-外卖人_files/20170312202216577.png" width="136" height="130" id="imgshow">  
-                        </div>
-                        <div class="file_xxiang">
-                        	<input type="hidden" name="shoplogo" id="shoplogo" value="/upload/user/20161006092551208.jpg" class="skey" style="width:150px;"> 
-                     <div id="div-headpicUpload" style="display:block;"> 
-		                      
-		                  	<div class=""> 
-		               		<input name="head" type="file" id="imgFile" style="width:70px;float:left;" onchange="$(&#39;#input1&#39;).val($(this).val())" class="curbtn">
-		               		<input id="submitImg" type="button" value="上传" class="ss_sc curbtn" style="width:40px;float:left; border:1px solid #ccc;background-color:white;height:22px;line-height:12px;margin-top:5px;margin-left:20px;">   
-		               	</div>  
-		                
-		             </div>
-		                         <div class="cl"></div>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="serxuanze">
-                    	<div class="xuanze_left">
-                        	<span>店铺地址：</span>
-                        </div>
-                        <div class="dianpu_right">
-                        	<input type="text" style="width:569px; " id="address" name="cinema.cAddress">
-                            
-                        </div>
-                        <div class="cl"></div>
-                    </div>
-                    <div class="serxuanze">
-                    	<div class="xuanze_left">
-                        	<span>邮箱地址：</span>
-                        </div>
-                        <div class="dianpu_right">
-                        	<input type="text" style="width:569px;" id="email" name="cinema.email">
-                        </div>
-                        <div class="cl"></div>
-                    </div>
-                     <div class="serxuanze">
-                         <div class="xuanze_left">
-                             <span>店铺简介：</span>
-                         </div>
-                         <div class="dianpu_right">
-                             <input type="text" style="width:569px;" name="cinema.cIntroduction">
-                         </div>
-                         <div class="cl"></div>
-                     </div>
+            <div class="serxuanze">
+                <div class="xuanze_left">
+                    <span>店铺电话：</span>
+                </div>
+                <div class="dianpu_right" style="width:387px;">
+                    <input type="text" style="width:387px;" id="phone" name="cinema.cinTell">
 
-                     <div class="settijiao">
-                         <div class="xx"></div>
-                         <div class="cl"></div>
-                     </div>
-       			 </div>
-                </form>
+                </div>
+                <div class="cl"></div>
+            </div>
+            <div class="serxuanze">
+                <div class="xuanze_left">
+                    <span>所在地区：</span>
+                </div>
+                <div class="btn-group">
+                    <div class="dianpu_right" style="width: 200px">
+                        <select class="dianpu_right select" name="city.cityId" style="width: 200px;">
+                        </select>
+                    </div>
+                </div>
+                <div class="cl"></div>
+            </div>
+
+            <div class="upimg">
+                <div class="file_img">
+                    <img src="../upload/60421210.png" width="136" height="130" id="imgshow">
+                </div>
+                <div class="file_xxiang">
+                    <input type="hidden" name="cinema.cinPhoto" id="shoplogo" value="../upload/60421210.png"
+                           style="width:150px;">
+                    <div id="div-headpicUpload" style="display:block;">
+                        <div class="">
+                                <input type="file" name="uploadFile" style="width:70px;float:left;padding-top: 0px;">
+                                <input id="submitImg" type="button" value="上传" class="ss_sc curbtn"
+                                       style="width:40px;float:left; border:1px solid #ccc;background-color:white;height:22px;line-height:12px;margin-top:5px;margin-left:20px;">
+                        </div>
+
+                    </div>
+                    <div class="cl"></div>
+                </div>
+            </div>
+
+
+            <div class="serxuanze">
+                <div class="xuanze_left">
+                    <span>店铺地址：</span>
+                </div>
+                <div class="dianpu_right">
+                    <input type="text" style="width:569px; " id="address" name="cinema.cinAddress">
+
+                </div>
+                <div class="cl"></div>
+            </div>
+            <div class="serxuanze">
+                <div class="xuanze_left">
+                    <span>邮箱地址：</span>
+                </div>
+                <div class="dianpu_right">
+                    <input type="text" style="width:569px;" id="email" name="cinema.cinEmail">
+                </div>
+                <div class="cl"></div>
+            </div>
+            <div class="serxuanze">
+                <div class="xuanze_left">
+                    <span>店铺简介：</span>
+                </div>
+                <div class="dianpu_right">
+                    <input type="text" style="width:569px;" id="introduction" name="cinema.cinIntroduction">
+                </div>
+                <div class="cl"></div>
+            </div>
+
+            <div class="settijiao">
+                <input type="hidden" name="cinema.cinId" id="cinemaId"/>
+                <input type="hidden" name="cinema.state" id="state"/>
+                <div class="xx"></div>
+                <div class="cl"></div>
+            </div>
         </div>
-<script type="text/javascript">
-    $('.hc_login_btn_div').click(function(){
-        var shopname = $('input[name="shopname"]').val();
-        var phone = $('input[name="phone"]').val();
-        var address = $('input[name="address"]').val();
-        var shortname = $('input[name="shortname"]').val();
-        var email =$('input[name="email"]').val();
-    });
-	$(".hc_login_input").change(function(j){
-		var v=$(this).val();
-		var p=$(this).attr("shopname"); 
-		switch(p){
-		case "shopname":	if(v == '' ||v == null){
-			  alert('用户名不能为空'); 
-			} 
-		break;
-		case "shortname":
-		 	var patrn=/[u4e00-u9fa5]/;  
-			if(v == '' ||v == null){
-			  alert('店铺CODE不能为空'); 
-			} 
-		break; 
-		case "phone":
-		   if(v == '' ||v == null){
-			  alert('联系电话不能为空'); 
-			} 
-		break;
-		case "address":
-		   if(v == '' ||v == null){
-			  alert('联系地址不能为空'); 
-			} 
-		break;
-		case "pwd":
-			var patrn=/(.){4,16}/;  
-			if(!patrn.exec(v)){
-				 alert('密码是4-16位的字母、数字,区分大小写');  
-			 } 
-		break;
-		}
-	});
-	$('#submitImg').click(function(){
-		ajaxFileUpload();
-	});
-	function ajaxFileUpload()
-	{
-		$("#loading")
-		.ajaxStart(function(){
-			$(this).show();
-		})
-		.ajaxComplete(function(){
-			$(this).hide();
-		});
-  
-		$.ajaxFileUpload
-		(
-			{
-				url:'http://m6.waimairen.com/index.php?ctrl=other&action=userupload&type=shoplogo&datatype=json',
-				secureuri:false,
-				fileElementId:'imgFile',
-				dataType: 'json',
-				data:{name:'logan', id:'id'},
-				success: function (data, status)
-				{
-					if(typeof(data.error) != 'undefined')
-					{
-						if(data.error == false)
-						{ 
-						 
-							$('#img').val(data.msg);
- 	           $('#imgshow').attr('src',data.msg);
- 	                $('#imgshow').show(); 
-						}else
-						{
-							alert(data.msg);
-						}
-					}else{
-					  alert(data);
-					}
-				},
-				error: function (data, status, e)
-				{
-					alert(e);
-				}
-			}
-		)
-		
-		return false;
-
-	}
-</script>
+    </form>
+</div>
 </div>
 <style>
     .jutiSet .settijiao .xx {
@@ -206,4 +183,5 @@
         cursor: pointer;
     }
 </style>
-</body></html>
+</body>
+</html>

@@ -10,52 +10,52 @@ import java.util.Date;
 @Entity
 @Table(name = "manager_info")
 public class Manager {
-    private String mId;
-    private String mName;
-    private String mPwd;
-    private String mEmail;
+    private String manId;
+    private String manName;
+    private String password;
+    private String manEmail;
     private int state;
     private Cinema cinema;
     private Date loginTime;
 
     @Id
     @Column(name = "manager_id")
-    public String getmId() {
-        return mId;
+    public String getManId() {
+        return manId;
     }
 
-    public void setmId(String mId) {
-        this.mId = mId;
+    public void setManId(String manId) {
+        this.manId = manId;
     }
 
     @Column(name = "manager_name")
-    public String getmName() {
-        return mName;
+    public String getManName() {
+        return manName;
     }
 
-    public void setmName(String mName) {
-        this.mName = mName;
+    public void setManName(String manName) {
+        this.manName = manName;
     }
 
-    @Column(name = "manager_pwd")
-    public String getmPwd() {
-        return mPwd;
+    @Column(name = "password")
+    public String getPassword() {
+        return password;
     }
 
-    public void setmPwd(String mPwd) {
-        this.mPwd = mPwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Column(name = "manager_email")
-    public String getmEmail() {
-        return mEmail;
+    public String getManEmail() {
+        return manEmail;
     }
 
-    public void setmEmail(String mEmail) {
-        this.mEmail = mEmail;
+    public void setManEmail(String manEmail) {
+        this.manEmail = manEmail;
     }
 
-    @Column(name = "state",columnDefinition="int default 1")
+    @Column(name = "state")
     public int getState() {
         return state;
     }

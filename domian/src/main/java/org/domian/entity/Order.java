@@ -7,9 +7,9 @@ import java.util.Date;
  * Created by LIANG on 2017/2/14.
  */
 @Entity
-@Table(name = "o_info")
+@Table(name = "order_info")
 public class Order {
-    private String oId; //id
+    private String orId; //id
     private String orderId;//订单编号
     private Auditorium auditorium;//影厅
     private Cinema cinema;//影院
@@ -21,19 +21,19 @@ public class Order {
     private int state;//状态
     private double price;//价格
     private int seatNum;//座位数量
-    private String saet;//座位号
+    private String seat;//座位号
 
     @Id
-    @Column(name = "o_id")
-    public String getoId() {
-        return oId;
+    @Column(name = "or_id")
+    public String getOrId() {
+        return orId;
     }
 
-    public void setoId(String oId) {
-        this.oId = oId;
+    public void setOrId(String orId) {
+        this.orId = orId;
     }
 
-    @Column(name = "orderId")
+    @Column(name = "order_Id")
     public String getOrderId() {
         return orderId;
     }
@@ -43,7 +43,7 @@ public class Order {
     }
 
     @ManyToOne
-    @JoinColumn(name = "a_id")
+    @JoinColumn(name = "auditorium_id")
     public Auditorium getAuditorium() {
         return auditorium;
     }
@@ -53,7 +53,7 @@ public class Order {
     }
 
     @ManyToOne
-    @JoinColumn(name = "c_id")
+    @JoinColumn(name = "cinema_id")
     public Cinema getCinema() {
         return cinema;
     }
@@ -63,7 +63,7 @@ public class Order {
     }
 
     @ManyToOne
-    @JoinColumn(name = "m_id")
+    @JoinColumn(name = "movie_id")
     public Movie getMovie() {
         return movie;
     }
@@ -73,7 +73,7 @@ public class Order {
     }
 
     @ManyToOne
-    @JoinColumn(name = "s_id")
+    @JoinColumn(name = "screenings_id")
     public Screenings getScreenings() {
         return screenings;
     }
@@ -83,7 +83,7 @@ public class Order {
     }
 
     @ManyToOne
-    @JoinColumn(name = "u_id")
+    @JoinColumn(name = "user_id")
     public Users getUsers() {
         return users;
     }
@@ -138,11 +138,11 @@ public class Order {
     }
 
     @Column(name = "seat")
-    public String getSaet() {
-        return saet;
+    public String getSeat() {
+        return seat;
     }
 
-    public void setSaet(String saet) {
-        this.saet = saet;
+    public void setSeat(String seat) {
+        this.seat = seat;
     }
 }

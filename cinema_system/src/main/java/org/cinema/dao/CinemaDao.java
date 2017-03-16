@@ -7,4 +7,5 @@ import org.domian.entity.Cinema;
  */
 public interface CinemaDao extends BaseDao<Cinema> {
 
+    public Cinema findCinema();
 }

@@ -13,49 +13,50 @@ import java.util.Date;
 @Entity
 @Table(name = "admin_info")
 public class Administrators {
-    private String aId;
-    private String aName;
-    private String apwd;
-    private String aEmail;
+    private String adminId;
+    private String adminName;
+    private String password;
+    private String adminEmail;
     private Date loginTime;
     private String ip;
     private int state;
 
+
     @Id
     @Column(name = "admin_id")
-    public String getaId() {
-        return aId;
+    public String getAdminId() {
+        return adminId;
     }
 
-    public void setaId(String aId) {
-        this.aId = aId;
+    public void setAdminId(String adminId) {
+        this.adminId = adminId;
     }
 
     @Column(name = "admin_name")
-    public String getaName() {
-        return aName;
+    public String getAdminName() {
+        return adminName;
     }
 
-    public void setaName(String aName) {
-        this.aName = aName;
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 
     @Column(name = "admin_pwd")
-    public String getApwd() {
-        return apwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setApwd(String apwd) {
-        this.apwd = apwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Column(name = "admin_email")
-    public String getaEmail() {
-        return aEmail;
+    public String getAdminEmail() {
+        return adminEmail;
     }
 
-    public void setaEmail(String aEmail) {
-        this.aEmail = aEmail;
+    public void setAdminEmail(String adminEmail) {
+        this.adminEmail = adminEmail;
     }
 
     @Column(name = "login_time")

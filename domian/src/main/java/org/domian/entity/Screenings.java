@@ -1,6 +1,7 @@
 package org.domian.entity;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,25 +11,25 @@ import java.util.Set;
  * 场次
  */
 @Entity
-@Table(name="s_info")
+@Table(name="screening_info")
 public class Screenings {
-    private String sId;//id
+    private String scrId;//id
     private Date startTime;//开始时间
-    private Date  endTime;//结束时间
-    private Date addTime;
+    private Time endTime;//结束时间
+    private Time addTime;
     private double price;//价格
     private Auditorium auditorium; //影厅
     private Set<Shelves> shelvesSet=new HashSet<>();
     private Set<Order> orders=new HashSet<>();
 
     @Id
-    @Column(name = "s_id")
-    public String getsId() {
-        return sId;
+    @Column(name = "scr_id")
+    public String getScrId() {
+        return scrId;
     }
 
-    public void setsId(String sId) {
-        this.sId = sId;
+    public void setScrId(String scrId) {
+        this.scrId = scrId;
     }
 
     @Column(name = "start_time")
@@ -41,24 +42,24 @@ public class Screenings {
     }
 
     @Column(name = "end_time")
-    public Date getEndTime() {
+    public Time getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Time endTime) {
         this.endTime = endTime;
     }
 
     @Column(name = "add_time")
-    public Date getAddTime() {
+    public Time getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(Date addTime) {
+    public void setAddTime(Time addTime) {
         this.addTime = addTime;
     }
 
-    @Column(name = "s_price")
+    @Column(name = "scr_price")
     public double getPrice() {
         return price;
     }
@@ -68,7 +69,7 @@ public class Screenings {
     }
 
     @ManyToOne
-    @JoinColumn(name = "a_id")
+    @JoinColumn(name = "aud_id")
     public Auditorium getAuditorium() {
         return auditorium;
     }
@@ -77,7 +78,7 @@ public class Screenings {
         this.auditorium = auditorium;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "screenings")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "screenings")
     public Set<Shelves> getShelvesSet() {
         return shelvesSet;
     }
@@ -86,7 +87,7 @@ public class Screenings {
         this.shelvesSet = shelvesSet;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "screenings")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "screenings")
     public Set<Order> getOrders() {
         return orders;
     }

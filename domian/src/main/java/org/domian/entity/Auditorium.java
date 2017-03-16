@@ -9,58 +9,50 @@ import java.util.Set;
  * 影厅
  */
 @Entity
-@Table(name="a_info")
+@Table(name="auditorium_info")
 public class Auditorium {
-    private String aId;//id
-    private String aName;//名字
-    private String aType;//影厅类型
-    private int aNumber;//位子数量
+    private String audId;//id
+    private String audName;//名字
+    private int audNumber;//位子数量
     private int state;//状态
-    private String aPhoto;//图片
+    private String audPhoto;//图片
     private Cinema cinema;//电影院
-    private Set<Screenings> screenin=new HashSet<>();
+    private Set<Screenings> screeningss=new HashSet<>();
     private Set<Shelves> shelves=new HashSet<>();
     private Set<Order> orders=new HashSet<>();
     private AuditoriumType auditoriumType;
 
 
     @Id
-    @Column(name = "a_id")
-    public String getaId() {
-        return aId;
+    @Column(name = "aud_id")
+    public String getAudId() {
+        return audId;
     }
 
-    public void setaId(String aId) {
-        this.aId = aId;
+    public void setAudId(String audId) {
+        this.audId = audId;
     }
 
-    public String getaName() {
-        return aName;
+    @Column(name = "aud_name")
+    public String getAudName() {
+        return audName;
     }
 
-    public void setaName(String aName) {
-        this.aName = aName;
+    public void setAudName(String audName) {
+        this.audName = audName;
     }
 
-    public String getaType() {
-        return aType;
+    @Column(name = "aud_num")
+    public int getAudNumber() {
+        return audNumber;
     }
 
-    public void setaType(String aType) {
-        this.aType = aType;
-    }
-
-    @Column(name = "a_num")
-    public int getaNumber() {
-        return aNumber;
-    }
-
-    public void setaNumber(int aNumber) {
-        this.aNumber = aNumber;
+    public void setAudNumber(int audNumber) {
+        this.audNumber = audNumber;
     }
 
     @ManyToOne
-    @JoinColumn(name = "c_id")
+    @JoinColumn(name = "cinema_id")
     public Cinema getCinema() {
         return cinema;
     }
@@ -69,16 +61,16 @@ public class Auditorium {
         this.cinema = cinema;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "auditorium")
-    public Set<Screenings> getScreenin() {
-        return screenin;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "auditorium")
+    public Set<Screenings> getScreeningss() {
+        return screeningss;
     }
 
-    public void setScreenin(Set<Screenings> screenin) {
-        this.screenin = screenin;
+    public void setScreeningss(Set<Screenings> screeningss) {
+        this.screeningss = screeningss;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "auditorium")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "auditorium")
     public Set<Shelves> getShelves() {
         return shelves;
     }
@@ -87,7 +79,7 @@ public class Auditorium {
         this.shelves = shelves;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "auditorium")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "auditorium")
     public Set<Order> getOrders() {
         return orders;
     }
@@ -105,17 +97,17 @@ public class Auditorium {
         this.state = state;
     }
 
-    @Column(name = "a_photo")
-    public String getaPhoto() {
-        return aPhoto;
+    @Column(name = "aud_photo")
+    public String getAudPhoto() {
+        return audPhoto;
     }
 
-    public void setaPhoto(String aPhoto) {
-        this.aPhoto = aPhoto;
+    public void setAudPhoto(String audPhoto) {
+        this.audPhoto = audPhoto;
     }
 
     @ManyToOne
-    @JoinColumn(name="au_ty_id")
+    @JoinColumn(name="aud_ty_id")
     public AuditoriumType getAuditoriumType() {
         return auditoriumType;
     }
