@@ -14,6 +14,7 @@ import java.util.Set;
 public class Movie {
     private String movId;//id
     private String movName;//名字
+    private String englishName;
     private String movDescribe;//描述
     private String movDuration;//时长
     private String movDirector;//导演
@@ -181,6 +182,15 @@ public class Movie {
 //        this.orders = orders;
 //    }
 
+
+    @Column(name = "EnglishName")
+    public String getEnglishName() {
+        return englishName;
+    }
+
+    public void setEnglishName(String englishName) {
+        this.englishName = englishName;
+    }
 
     @Column(name="releaseTime")
     public Date getReleaseTime() {
