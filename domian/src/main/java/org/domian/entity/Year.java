@@ -16,6 +16,9 @@ public class Year {
     private int state;
     private Set<Movie> movies=new HashSet<>();
 
+
+
+
     @Id
     @Column(name="year_id")
     public String getYearId() {
@@ -23,7 +26,7 @@ public class Year {
     }
 
     public void setYearId(String yearId) {
-        yearId = yearId;
+        this.yearId = yearId;
     }
 
     @Column(name="year_particular")

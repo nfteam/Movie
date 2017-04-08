@@ -22,8 +22,8 @@ public class Cinema {
     private Manager manager;
     private int state;
     private Set<Auditorium> auditoriums=new HashSet<>();
-    private Set<Shelves> shelves=new HashSet<>();
-    private Set<Order> orders=new HashSet<>();
+//    private Set<Shelves> shelves=new HashSet<>();
+//    private Set<Order> orders=new HashSet<>();
     private Set<AuditoriumType> auditoriumTypes=new HashSet<>();
 
     @Id
@@ -90,25 +90,26 @@ public class Cinema {
         this.auditoriums = auditoriums;
     }
 
+//    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cinema")
+//    public Set<Shelves> getShelves() {
+//        return shelves;
+//    }
+//
+//    public void setShelves(Set<Shelves> shelves) {
+//        this.shelves = shelves;
+//    }
+
+//    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cinema")
+//    public Set<Order> getOrders() {
+//        return orders;
+//    }
+//
+//    public void setOrders(Set<Order> orders) {
+//        this.orders = orders;
+//    }
+
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "cinema")
-    public Set<Shelves> getShelves() {
-        return shelves;
-    }
-
-    public void setShelves(Set<Shelves> shelves) {
-        this.shelves = shelves;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cinema")
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cinema")
+    @OrderBy("addTime desc")
     public Set<AuditoriumType> getAuditoriumTypes() {
         return auditoriumTypes;
     }

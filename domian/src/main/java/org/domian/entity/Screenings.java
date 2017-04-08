@@ -14,9 +14,9 @@ import java.util.Set;
 @Table(name="screening_info")
 public class Screenings {
     private String scrId;//id
-    private Date startTime;//开始时间
+    private Time startTime;//开始时间
     private Time endTime;//结束时间
-    private Time addTime;
+    private Date addTime;
     private double price;//价格
     private Auditorium auditorium; //影厅
     private Set<Shelves> shelvesSet=new HashSet<>();
@@ -33,11 +33,11 @@ public class Screenings {
     }
 
     @Column(name = "start_time")
-    public Date getStartTime() {
+    public Time getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Time startTime) {
         this.startTime = startTime;
     }
 
@@ -51,11 +51,11 @@ public class Screenings {
     }
 
     @Column(name = "add_time")
-    public Time getAddTime() {
+    public Date getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(Time addTime) {
+    public void setAddTime(Date addTime) {
         this.addTime = addTime;
     }
 
@@ -95,4 +95,5 @@ public class Screenings {
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
+
 }

@@ -13,13 +13,12 @@ import java.util.Set;
 public class Auditorium {
     private String audId;//id
     private String audName;//名字
-    private int audNumber;//位子数量
     private int state;//状态
     private String audPhoto;//图片
     private Cinema cinema;//电影院
     private Set<Screenings> screeningss=new HashSet<>();
-    private Set<Shelves> shelves=new HashSet<>();
-    private Set<Order> orders=new HashSet<>();
+//    private Set<Shelves> shelves=new HashSet<>();
+//    private Set<Order> orders=new HashSet<>();
     private AuditoriumType auditoriumType;
 
 
@@ -42,15 +41,6 @@ public class Auditorium {
         this.audName = audName;
     }
 
-    @Column(name = "aud_num")
-    public int getAudNumber() {
-        return audNumber;
-    }
-
-    public void setAudNumber(int audNumber) {
-        this.audNumber = audNumber;
-    }
-
     @ManyToOne
     @JoinColumn(name = "cinema_id")
     public Cinema getCinema() {
@@ -70,23 +60,23 @@ public class Auditorium {
         this.screeningss = screeningss;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "auditorium")
-    public Set<Shelves> getShelves() {
-        return shelves;
-    }
-
-    public void setShelves(Set<Shelves> shelves) {
-        this.shelves = shelves;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "auditorium")
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
+//    @OneToMany(fetch = FetchType.LAZY,mappedBy = "auditorium")
+//    public Set<Shelves> getShelves() {
+//        return shelves;
+//    }
+//
+//    public void setShelves(Set<Shelves> shelves) {
+//        this.shelves = shelves;
+//    }
+//
+//    @OneToMany(fetch = FetchType.LAZY,mappedBy = "auditorium")
+//    public Set<Order> getOrders() {
+//        return orders;
+//    }
+//
+//    public void setOrders(Set<Order> orders) {
+//        this.orders = orders;
+//    }
 
     @Column(name = "state")
     public int getState() {

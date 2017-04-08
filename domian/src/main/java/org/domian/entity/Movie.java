@@ -18,16 +18,18 @@ public class Movie {
     private String movDuration;//时长
     private String movDirector;//导演
     private String movStar;//主演
-    private String movPhoto;//图片
+    private String movPicture;//图片
     private Date addTime;//添加时间
     private String photoList;//图片集
     private Year year;//年份
     private Type type;//类型
+    private Edition edition;//版本
     private Region region;//区域
     private int state;//状态
     private Date modifyTime;//修改时间
+    private Date releaseTime;  //上映时间
     private Set<Shelves> shelves=new HashSet<>();
-    private Set<Order> orders=new HashSet<>();
+//    private Set<Order> orders=new HashSet<>();
     private Set<Comment> comments=new HashSet<>();
 
     @Id
@@ -85,13 +87,14 @@ public class Movie {
         this.movStar = movStar;
     }
 
+
     @Column(name = "mov_photo")
-    public String getMovPhoto() {
-        return movPhoto;
+    public String getMovPicture() {
+        return movPicture;
     }
 
-    public void setMovPhoto(String mPhoto) {
-        this.movPhoto = movPhoto;
+    public void setMovPicture(String movPicture) {
+        this.movPicture = movPicture;
     }
 
     @Column(name = "mov_addTime")
@@ -113,7 +116,7 @@ public class Movie {
     }
 
     @ManyToOne
-    @JoinColumn(name = "year_id")
+    @JoinColumn(name = "y_id")
     public Year getYear() {
         return year;
     }
@@ -123,7 +126,7 @@ public class Movie {
     }
 
     @ManyToOne
-    @JoinColumn(name = "type_id")
+    @JoinColumn(name = "t_id")
     public Type getType() {
         return type;
     }
@@ -133,7 +136,7 @@ public class Movie {
     }
 
     @ManyToOne
-    @JoinColumn(name = "region_id")
+    @JoinColumn(name = "r_id")
     public Region getRegion() {
         return region;
     }
@@ -169,13 +172,23 @@ public class Movie {
         this.shelves = shelves;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "movie")
-    public Set<Order> getOrders() {
-        return orders;
+//    @OneToMany(fetch = FetchType.LAZY,mappedBy = "movie")
+//    public Set<Order> getOrders() {
+//        return orders;
+//    }
+//
+//    public void setOrders(Set<Order> orders) {
+//        this.orders = orders;
+//    }
+
+
+    @Column(name="releaseTime")
+    public Date getReleaseTime() {
+        return releaseTime;
     }
 
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
+    public void setReleaseTime(Date releaseTime) {
+        this.releaseTime = releaseTime;
     }
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "movie")
@@ -185,5 +198,15 @@ public class Movie {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "edition_id")
+    public Edition getEdition() {
+        return edition;
+    }
+
+    public void setEdition(Edition edition) {
+        this.edition = edition;
     }
 }

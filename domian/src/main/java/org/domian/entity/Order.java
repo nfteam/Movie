@@ -11,14 +11,15 @@ import java.util.Date;
 public class Order {
     private String orId; //id
     private String orderId;//订单编号
-    private Auditorium auditorium;//影厅
-    private Cinema cinema;//影院
-    private Movie movie;//电影
+//    private Auditorium auditorium;//影厅
+//    private Cinema cinema;//影院
+//    private Movie movie;//电影
     private Screenings screenings;//场次
     private Users users;//用户
     private Date addTime;//下单时间
     private Date paymentTime;//结算时间
     private int state;//状态
+    private int payState;
     private double price;//价格
     private int seatNum;//座位数量
     private String seat;//座位号
@@ -42,35 +43,35 @@ public class Order {
         this.orderId = orderId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "auditorium_id")
-    public Auditorium getAuditorium() {
-        return auditorium;
-    }
-
-    public void setAuditorium(Auditorium auditorium) {
-        this.auditorium = auditorium;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "cinema_id")
-    public Cinema getCinema() {
-        return cinema;
-    }
-
-    public void setCinema(Cinema cinema) {
-        this.cinema = cinema;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "movie_id")
-    public Movie getMovie() {
-        return movie;
-    }
-
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "auditorium_id")
+//    public Auditorium getAuditorium() {
+//        return auditorium;
+//    }
+//
+//    public void setAuditorium(Auditorium auditorium) {
+//        this.auditorium = auditorium;
+//    }
+//
+//    @ManyToOne
+//    @JoinColumn(name = "cinema_id")
+//    public Cinema getCinema() {
+//        return cinema;
+//    }
+//
+//    public void setCinema(Cinema cinema) {
+//        this.cinema = cinema;
+//    }
+//
+//    @ManyToOne
+//    @JoinColumn(name = "movie_id")
+//    public Movie getMovie() {
+//        return movie;
+//    }
+//
+//    public void setMovie(Movie movie) {
+//        this.movie = movie;
+//    }
 
     @ManyToOne
     @JoinColumn(name = "screenings_id")
@@ -144,5 +145,14 @@ public class Order {
 
     public void setSeat(String seat) {
         this.seat = seat;
+    }
+
+    @Column(name="payState")
+    public int getPayState() {
+        return payState;
+    }
+
+    public void setPayState(int payState) {
+        this.payState = payState;
     }
 }
