@@ -34,11 +34,10 @@ public class CinemaServiceImpl implements CinemaService {
     @Override
     public Cinema findCinema() {
         Cinema cinema=dao.findCinema();
-        cinema.setOrders(null);
-        cinema.setShelves(null);
+//        cinema.setOrders(null);
+//        cinema.setShelves(null);
         cinema.setAuditoriums(null);
         cinema.getCity().setCinema(null);
-        cinema.setAuditoriumTypes(null);
         return cinema;
     }
 

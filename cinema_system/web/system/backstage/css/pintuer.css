@@ -5731,13 +5731,13 @@ textarea.input {
     line-height: inherit;
 }
 
-.pagination {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    vertical-align: bottom;
-}
+/*.pagination {*/
+    /*list-style: none;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*display: inline-block;*/
+    /*vertical-align: bottom;*/
+/*}*/
 
 .pagination li {
     display: inline-block;

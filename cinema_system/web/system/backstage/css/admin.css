@@ -376,6 +376,16 @@ textarea[name=content] {
     height: 210px;
 }
 
+.photo2{
+    z-index: 3;
+    position: absolute;
+    border: 1px solid #f60;
+    width: 150px;
+    margin-left:70%;
+    margin-top:-12%;
+    height: 150px;
+}
+
 
 
 

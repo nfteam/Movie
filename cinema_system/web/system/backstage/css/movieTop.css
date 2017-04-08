@@ -1,0 +1,40 @@
+
+.father {
+    width: 210px;
+    height: 30px;
+    line-height: 28px;
+    background: #FFFFFF;
+    border: solid 1px #ccc;
+    overflow: hidden;
+    display: inline-flex;
+}
+
+.father span {
+    color: #1ebba7;
+    font-size: 14px;
+    text-indent: 10px;
+    flex: auto;
+}
+
+.s1 {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+    width: 145px;
+    height: 100%;
+    background: url(../images/9.jpg) no-repeat scroll right center transparent;
+}
+
+.btn1 {
+    background: none;
+    border-style: none;
+    width: 50px;
+    height: 30px;
+    background: #1ebba7;
+    color: #FFFFFF;
+    border-radius: 3px;
+    margin-left: 20px;
+    text-align: center;
+}

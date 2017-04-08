@@ -4,17 +4,19 @@
     <title>店铺信息</title>
     <link rel="stylesheet" type="text/css" href="css/shangjiaAdmin.css">
     <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/projectName.js"></script>
 </head>
 <script>
     $(function () {
 
 
-        $.get("findCinema", function (result) {
+        $.get(projectName()+"/cinema/findCinema", function (result) {
             $("#shopname").val(result.cinName);
             $("#phone").val(result.cinTell);
             $("#address").val(result.cinAddress);
             $("#email").val(result.cinEmail);
             $("#introduction").val(result.cinIntroduction);
+//            alert(result.city.cityId)
             type(result);
             $("#imgshow").attr("src", result.cinPhoto);
             $("#shoplogo").val(result.cinPhoto);
@@ -24,7 +26,7 @@
         $(".xx").on("click", function () {
             var params = $("#stopForm").serialize();
             /*          alert(params)*/
-            $.post("update", params, function (result) {
+            $.post(projectName()+"/cinema/update", params, function (result) {
                 alert(result);
                 window.location.reload();
 
@@ -37,9 +39,9 @@
     });
 
     function type(result) {
-        $.get("citylist", function (result2) {
+        $.get(projectName()+"/cinema/citylist", function (result2) {
             $.each(result2, function (index, obj) {
-                if (result.city.cityId == obj.cinId) {
+                if (result.city.cityId == obj.cityId) {
                     $(".select").append("<option value='" + obj.cityId + "' selected='selected'>" + obj.cityName);
                 } else {
                     $(".select").append("<option value='" + obj.cityId + "'>" + obj.cityName);

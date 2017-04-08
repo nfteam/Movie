@@ -8,6 +8,12 @@
     <title>影厅列表</title>
     <link rel="stylesheet" href="css/pintuer.css">
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/qikoo.js"></script>
+    <script src="js/fy.js"></script>
 </head>
 <body>
 <div class="panel admin-panel">
@@ -15,33 +21,206 @@
   <div class="padding border-bottom">  
   <a class="button border-yellow" href="add.html"><span class="icon-plus-square-o"></span> 添加影厅</a>
   </div> 
-  <table class="table table-hover text-center">
+  <table class="table table-hover text-center" id="audList">
     <tr>
       <th width="5%">ID</th>     
       <th>影厅名称</th>
       <th>状态</th>
       <th width="250">操作</th>
     </tr>
-    <tr>
-      <td>17</td>      
-      <td>联系我们</td>  
-      <td>1</td>      
-      <td>
-      <div class="button-group">
-        <a type="button" class="button border-main" href="#"><span class="icon-edit"></span>修改</a>
-        <a class="button border-red" href="javascript:void(0)" onclick="return del(17)"><span class="icon-trash-o"></span> 删除</a>
-        <a type="button" class="button border-sub" href="#"><span class="icon-edit"></span>详情</a>
-      </div>
-      </td>
-    </tr>   
     
   </table>
 </div>
+<div style="text-align: center;">
+    <a id="btn0"></a>
+    <!--<input id="pageSize" type="text" size="1" maxlength="2" value="getDefaultValue()"/><a> 条 </a> <a href="#" id="pageSizeSet">设置</a>-->
+    <a id="sjzl"></a>
+    <a  href="javascript:void(0)" id="btn1">首页</a>
+    <a  href="javascript:void(0)" id="btn2">上一页</a>
+    <a  href="javascript:void(0)" id="btn3">下一页</a>
+    <a  href="javascript:void(0)" id="btn4">尾页</a>
+    <a>转到 </a>
+    <input id="changePage" type="text" size="1" maxlength="4"/>
+    <a>页 </a>
+    <a  href="javascript:void(0)" id="btn5">跳转</a>
+</div>
+<!--修改信息弹框-->
+<div id="updateAud" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">
+                    <i class="icon-pencil"></i>
+                    <span id="updateTitle" style="font-weight:bold">修改类型</span>
+                </h4>
+            </div>
+            <form class="form-horizontal form-bordered form-row-strippe" id="update"  data-toggle="validator" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">名称</label>
+                                <div class="col-md-10">
+                                    <input id="name" name="auditorium.audName" type="text" class="form-control" style="width: 45%"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">类型</label>
+                                <div class="col-md-10">
+                                    <select name="auditoriumType.typeId" class="form-control" style="width: 45%" id="myOption">
+                                        <option value="">请选择分类</option>
+                                    </select>
+                                    <div class="tips"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">状态</label>
+                                <div class="col-md-10">
+                                    正常 <input id="ishome" type="radio" name="auditorium.state" value="1"/>
+                                    维护 <input id="isvouch" type="radio" name="auditorium.state" value="2"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="photo2 thumbnail" style="margin-top: 0px;">
+                            <img src="../images/11.jpg" width="100%" id="imgshow" style="height: 115px"/>
+                            <div style="margin-top: 5px">
+                                <input type="hidden" name="auditorium.audPhoto" id="shoplogo" value="../upload/60421210.png">
+                                <input type="file" name="uploadFile"
+                                       style="width:70px;float:left;padding-top: 0px; margin-left: 4px;"/>
+                                <input type="button" value="上传" id="submitImg" style="width:40px;float:left; border:1px solid #ccc;background-color:white;height:22px;line-height:12px;margin-top:0px;margin-left:20px;"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-info">
+                    <input type="hidden" name="auditorium.audId" id="audId">
+                    <input type="hidden" name="cinema.cinId" id="cinId">
+                    <button type="button" class="btn btn-info" id="confirm">确定</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
 <script>
-function del(id){
-	if(confirm("您确定要删除吗?")){
-		
-	}
-}
+    $(function () {
+
+        //上传图片
+        upload("ajaxUpload");
+        //循环遍历
+        $.get("findAudByList",function (result) {
+            addTabel(result);
+           //修改
+            update("update");
+
+            //删除
+            dell("delAud");
+        });
+
+
+    });
+
+    function update(url) {
+        $(".border-main").on("click",function () {
+                var id=$(this).attr("value");
+                $.post("findAud",{"auditorium.audId":id},function (result2) {
+                    $("#name").val(result2.audName);
+                    $("#audId").val(result2.audId);
+                    $("#cinId").val(result2.cinema.cinId);
+                    $("#imgshow").attr("src", result2.audPhoto);
+                    $("#shoplogo").val(result2.audPhoto);
+                    if (result2.state==1){
+                        $("#ishome").attr("checked","checked");
+                    }else {
+                        $("#isvouch").attr("checked","checked");
+                    }
+                    findType("findType",result2);
+                });
+                $("#updateAud").modal("show");
+        });
+    }
+
+    function dell(url) {
+        $(".border-red").on("click",function () {
+            var id=$(this).attr("value");
+            qikoo.dialog.confirm('确认删除？',function(){
+                $.post(url,{"auditorium.audId":id},function (result) {
+                    alert(result);
+                });
+            },function(){
+
+            });
+
+        });
+    }
+
+    function findType(url,result2) {
+        $.get(url, function (result) {
+                $("#myOption").empty();
+                $.each(result,function (index,obj) {
+                    if(result2.auditoriumType.typeId==obj.typeId){
+                        $("#myOption").append("<option value='" + obj.typeId + "' selected='selected'>" + obj.typeName);
+                    } else {
+                        $("#myOption").append("<option value='" + obj.typeId + "'>" + obj.typeName);
+                    }
+                });
+
+                $("#confirm").unbind("click").on("click",function () {
+                   var par= $("#update").serialize();
+                   $.post("updateAud",par,function (result) {
+                       window.location.reload();
+                   });
+                });
+
+        });
+    }
+
+
+    function upload(url) {
+        $("#submitImg").on("click",function () {
+            var formData = new FormData(document.getElementById("update"));
+            $.ajax({
+                url: url, //请求的url
+                type: "post", //请求类型
+                data: formData, //表单数据
+                processData: false, //让Jquery不处理发送的数据
+                contentType: false,  //让Jquery不设置Content-Type请求头
+                success: function (result) { // 成功响应后的回调函数
+                    if(result!=null){
+                        $("#imgshow").attr("src", "../"+result);
+                        $("#shoplogo").val("../"+result);
+                    }else {
+                        alert(result);
+                    }
+//                    alert(result)
+                }
+            });
+        });
+
+    }
+
+    function addTabel(result) {
+        $.each(result,function (index,obj) {
+            var state= obj.state == 1 ? "正常" : "维护中";
+            $("#audList").append("<tr><td>"+(++index)+"</td><td>"+obj.audName+"</td><td>"+state+"</td>"+
+                "<td><div class='button-group'><a type='button' class='button border-main' href='javascript:void(0)' value='"+obj.audId+"'>"+
+                "<span class='icon-edit'></span>修改</a><a class='button border-red' href='javascript:void(0)' value='"+obj.audId+"'>"+
+                "<span class='icon-trash-o'></span> 删除</a> <a type='button' class='button border-sub' href='javascript:void(0)' value='"+obj.audId+"'>"+
+                "<span class='icon-edit'></span>详情</a> </div></td></tr>")
+        });
+        pageNum("#audList",3);
+    }
+
+
 </script>
 </body></html>

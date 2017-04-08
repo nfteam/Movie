@@ -24,43 +24,31 @@ public class AuditoriumTypeServiceImpl implements AuditoriumTypeService {
     private String message;
 
     @Override
-    public List<Cinema> findList() {
-        List<Cinema> list = dao.findList();
-        for (Cinema type : list) {
-            type.setAuditoriums(null);
-            type.setManager(null);
-            type.setOrders(null);
-            type.setShelves(null);
-            type.getCity().setCinema(null);
-            for (AuditoriumType a : type.getAuditoriumTypes()) {
-                a.setAuditoriums(null);
-            }
-        }
+    public List<AuditoriumType> findList() {
+        List<AuditoriumType> list = dao.findList();
         return list;
     }
 
     @Override
     public String save(AuditoriumType auditoriumType) {
+            List<AuditoriumType> list = findByName(auditoriumType);
 
-            List<Cinema> list = findByName(auditoriumType);
-            Cinema cinema = new Cinema();
             if (list.size() > 0) {
-                for (Cinema c : list) {
-                    cinema.setCinId(c.getCinId());
-                    for (AuditoriumType t : c.getAuditoriumTypes()) {
-                        auditoriumType.setState(t.getState());
-                        auditoriumType.setTypeId(t.getTypeId());
+                for (AuditoriumType a:list){
+                    if (a.getState() == 0) {
+                        Cinema cinema = new Cinema();
+                        auditoriumType.setTypeId(a.getTypeId());
+                        auditoriumType.setState(1);
+                        cinema.setCinId(a.getCinema().getCinId());
+                        auditoriumType.setAddTime(new Date());
                         auditoriumType.setCinema(cinema);
+                        dao.update(auditoriumType);
+                        message="添加成功";
+                    }else {
+                        message = "已存在该数据";
                     }
                 }
-                if (auditoriumType.getState() == 0) {
-                    auditoriumType.setState(1);
-                    auditoriumType.setAddTime(new Date());
-                    dao.update(auditoriumType);
-                    message="添加成功";
-                }else {
-                    message = "已存在该数据";
-                }
+
             } else {
                 auditoriumType.setTypeId(UUIDUtil.getUUID());
                 auditoriumType.setState(1);
@@ -73,10 +61,9 @@ public class AuditoriumTypeServiceImpl implements AuditoriumTypeService {
     }
 
     @Override
-    public List<Cinema> findByName(AuditoriumType auditoriumType) {
-        List<Cinema> list = dao.findByName(auditoriumType);
-//        System.out.println(list.size());
-        return list;
+    public List<AuditoriumType> findByName(AuditoriumType auditoriumType) {
+         return dao.findByName(auditoriumType);
+
     }
 
     @Override
@@ -100,6 +87,7 @@ public class AuditoriumTypeServiceImpl implements AuditoriumTypeService {
         message =n == 0 ? "失败" : "成功";
         return message ;
     }
+
 
 
 }

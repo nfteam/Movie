@@ -2,7 +2,6 @@ package org.cinema.action;
 
 import org.cinema.service.AuditoriumTypeService;
 import org.domian.entity.AuditoriumType;
-import org.domian.entity.Cinema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -16,16 +15,16 @@ import java.util.List;
 @Scope("prototype")
 public class AuditoriumTypeAction {
     private AuditoriumType auditoriumType;
-    private List<Cinema> list;
+    private List<AuditoriumType> list;
     private String message;
     @Autowired
     private AuditoriumTypeService service;
 
-    public List<Cinema> getList() {
+    public List<AuditoriumType> getList() {
         return list;
     }
 
-    public void setList(List<Cinema> list) {
+    public void setList(List<AuditoriumType> list) {
         this.list = list;
     }
 
@@ -47,7 +46,6 @@ public class AuditoriumTypeAction {
 
     public String findAuditoriumType(){
         list=service.findList();
-        System.out.println(list.size());
         return "success";
     }
 
@@ -72,13 +70,15 @@ public class AuditoriumTypeAction {
 
     public String findById(){
         auditoriumType=service.findById(auditoriumType);
-        auditoriumType.setAuditoriums(null);
-        auditoriumType.setCinema(null);
         return "success";
     }
 
     public String update(){
-        message=service.update(auditoriumType);
+        try{
+            message=service.update(auditoriumType);
+        }catch (RuntimeException e){
+            message="系统异常";
+        }
         return "success";
     }
 }

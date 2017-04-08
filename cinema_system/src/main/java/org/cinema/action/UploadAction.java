@@ -66,8 +66,6 @@ public class UploadAction extends ActionSupport {
         String uploadPath = ServletActionContext.getServletContext().getRealPath(PATH);
         //如果提交过来的File不为null，才执行上传操作
         if(uploadFile != null){
-            System.out.println(uploadFileFileName);
-            System.out.println("---------"+uploadFileContentType);
             //根据文件名以及上传的路径构建一个新的File对象
             File saveFile = new File(uploadPath, uploadFileFileName);
             //先判断上传的目录是否存在，如果不存在则创建出来

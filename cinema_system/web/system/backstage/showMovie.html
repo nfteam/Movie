@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="cleartype" content="yes"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>电影信息详情</title>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/Intercept.js"></script>
+    <link rel="stylesheet" href="css/showMovie.css"/>
+
+    <style>
+        body {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="top">
+    <span class="max">3DIMAX</span>
+    <img src="../images/11.jpg" width="218" height="299"/>
+    <div class="top_right">
+        <p id="name">美女与野兽</p>
+        <h3>Beauty and the Beast</h3><br/>
+        <p style="font-size: 20px;margin-top: 10px;" id="type">爱情.奇幻.歌舞</p>
+        <p style="font-size: 20px;margin-top: 10px;" id="region" >美国 / 130分钟</p>
+        <p style="font-size: 20px;margin-top: 10px;" id="releaseTime">2017-03-17大陆上映
+        <p>
+            <button class="red_btn">立即购票</button>
+    </div>
+</div>
+
+<ul class="xiangqing">
+    <li id="jies" onclick="change(jies,'oneitem')" style="border-bottom: 2px solid #ef4238;color: #EF4238;">介绍</li>
+    <li id="yanzhi" onclick="change(yanzhi,'twoitem')">演职人员</li>
+    <li id="tuji" onclick="change(tuji,'threeitem')">图集</li>
+</ul>
+<div id="oneitem" style="display: block;">
+    <ul class="juqing">
+        <li>剧情简介</li>
+        <li>一位高傲的王子（丹·史蒂文斯 饰）在宏伟古堡独居，因拒绝一名貌丑老婆婆借宿，被施咒变成了野兽，连这位王子的仆人都变成各样家具，要解除魔咒就要这位变成野兽的王子学会真心待人。漂亮善良的姑娘贝儿（艾玛·沃森
+            饰）为救父亲被逼与野兽同居古堡。几个回合之后，他们产生了难以想像的感情。加斯顿（卢克·伊万斯
+            饰）是一个长相英俊、身体强壮的男人，镇上每个女人都爱恋他，他一直追求贝儿，但贝儿始终看不上他，为了要挟贝儿和他结婚，他甚至串通疯人院的院长要把贝儿的父亲送进疯人院。然而大坏蛋加斯顿突然到城堡袭击野兽，令其身受重伤，贝儿没有伺机逃跑，与野兽一同打倒了加斯顿......
+        </li>
+    </ul>
+
+
+</div>
+<div id="twoitem">
+    <ul class="two_daoyan">
+        <li>
+            <p style="color: #000000;font-size: 17px;">导演<span style="color: #888888;font-size: 15px;">（1）</span></p>
+            <img src="d_img/1.jpg"/>
+            <p class="zhenming">比尔·康顿</p>
+        </li>
+    </ul>
+
+    <ul class="yanyuanbiao">
+        <li>
+            <p style="color: #000000;font-size: 17px;">演员<span style="color: #888888;font-size: 15px;">（1）</span></p>
+            <img src="d_img/2.jpg"/>
+            <p class="zhenming">艾玛·沃森</p>
+            <p class="shiyan">饰：贝儿 Belle</p>
+        </li>
+        <li>
+            <img src="d_img/2.jpg" style="margin-top: 38px;"/>
+            <p class="zhenming">艾玛·沃森</p>
+            <p class="shiyan">饰：贝儿 Belle</p>
+        </li>
+        <li>
+            <img src="d_img/2.jpg" style="margin-top: 38px;"/>
+            <p class="zhenming">艾玛·沃森</p>
+            <p class="shiyan">饰：贝儿 Belle</p>
+        </li>
+        <li>
+            <img src="d_img/2.jpg" style="margin-top: 38px;"/>
+            <p class="zhenming">艾玛·沃森</p>
+            <p class="shiyan">饰：贝儿 Belle</p>
+        </li>
+        <li>
+            <img src="d_img/2.jpg" style="margin-top: 38px;"/>
+            <p class="zhenming">艾玛·沃森</p>
+            <p class="shiyan">饰：贝儿 Belle</p>
+        </li>
+        <li>
+            <img src="d_img/2.jpg" style="margin-top: 38px;"/>
+            <p class="zhenming">艾玛·沃森</p>
+            <p class="shiyan">饰：贝儿 Belle</p>
+        </li>
+        <li>
+            <img src="d_img/2.jpg" style="margin-top: 38px;"/>
+            <p class="zhenming">艾玛·沃森</p>
+            <p class="shiyan">饰：贝儿 Belle</p>
+        </li>
+        <li>
+            <img src="d_img/2.jpg" style="margin-top: 38px;"/>
+            <p class="zhenming">艾玛·沃森</p>
+            <p class="shiyan">饰：贝儿 Belle</p>
+        </li>
+        <li>
+            <img src="d_img/2.jpg" style="margin-top: 38px;"/>
+            <p class="zhenming">艾玛·沃森</p>
+            <p class="shiyan">饰：贝儿 Belle</p>
+        </li>
+
+    </ul>
+</div>
+<div id="threeitem">
+    <ul class="thr_tuji">
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+        <li>
+            <img src="d_img/6.jpg"/>
+        </li>
+    </ul>
+</div>
+
+
+</body>
+<script>
+    /*****************页面加载运行********************/
+    $(function () {
+       $.get("findMovieById",{"movie.movId":Intercept("id")},function (result) {
+           addtable(result);
+//        alert(JSON.stringify(result));
+       });
+    });
+
+
+    function addtable(result) {
+            $("#type").html(result.type.typeName);
+            $("#name").html(result.movName);
+            $("#region").html(result.region.region + " / " +result.movDuration +"分钟");
+            $("#releaseTime").html(result.releaseTime + "上映");
+    }
+
+
+/*******************底部点击事件**********************/
+    function change(mythis, mydiv) {
+        var one = document.getElementById("jies");
+        var two = document.getElementById("yanzhi");
+        var thr = document.getElementById("tuji");
+
+        var a = document.getElementById("oneitem");
+        var b = document.getElementById("twoitem");
+        var c = document.getElementById("threeitem");
+
+        one.setAttribute("style", "border-bottom: 2px solid #EEEEEE;color: #000000;");
+        two.setAttribute("style", "border-bottom: 2px solid #EEEEEE;color: #000000;");
+        thr.setAttribute("style", "border-bottom: 2px solid #EEEEEE;color: #000000;");
+        mythis.setAttribute("style", "border-bottom: 2px solid #ef4238;color:#ef4238 ;");
+        a.style.display = "none";
+        b.style.display = "none";
+        c.style.display = "none";
+        document.getElementById(mydiv).style.display = "block";
+
+    }
+
+</script>
+</html>

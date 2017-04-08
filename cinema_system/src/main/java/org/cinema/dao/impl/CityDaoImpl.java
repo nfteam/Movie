@@ -13,7 +13,7 @@ import java.util.List;
 public class CityDaoImpl extends BaseDaoImpl implements CityDao {
     @Override
     public List<City> city() {
-        String hql="from City";
+        String hql="from City c where c.state>0";
         return em.createQuery(hql, City.class).getResultList();
     }
 }

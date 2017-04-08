@@ -6,38 +6,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
     <title>场次列表</title>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/fy.js"></script>
+    <script src="js/DateTime.js"></script>
     <link rel="stylesheet" href="css/pintuer.css">
     <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
 <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder"> 场次列表</strong></div>
-    <table class="table table-hover text-center">
+    <table class="table table-hover text-center" id="title">
         <tr>
             <th width="5%">ID</th>
             <th>影厅名称</th>
-            <th>场次数量</th>
+            <th>开场时间</th>
             <th width="250">操作</th>
         </tr>
-        <tr>
-            <td>17</td>
-            <td>联系我们</td>
-            <td>1</td>
-            <td>
-                <div class="button-group">
-                    <a type="button" class="btn btn-success" href="#"><span class="icon-edit"></span>详情</a>
-                </div>
-            </td>
-        </tr>
-
     </table>
 </div>
+<div style="text-align: center;">
+    <a id="btn0"></a>
+    <!--<input id="pageSize" type="text" size="1" maxlength="2" value="getDefaultValue()"/><a> 条 </a> <a href="#" id="pageSizeSet">设置</a>-->
+    <a id="sjzl"></a>
+    <a  href="javascript:void(0)" id="btn1">首页</a>
+    <a  href="javascript:void(0)" id="btn2">上一页</a>
+    <a  href="javascript:void(0)" id="btn3">下一页</a>
+    <a  href="javascript:void(0)" id="btn4">尾页</a>
+    <a>转到 </a>
+    <input id="changePage" type="text" size="1" maxlength="4"/>
+    <a>页 </a>
+    <a  href="javascript:void(0)" id="btn5">跳转</a>
+</div>
 <script>
-    function del(id){
-        if(confirm("您确定要删除吗?")){
+    dateTime();
+    $(function () {
+        $.get("findScreening",function (result) {
+            addTable(result);
+        })
+    });
 
+
+    function addTable(result){
+        $("#title tr:not(:first)").remove();
+        $.each(result,function (index,obj) {
+            $("#title").append("<tr><td>"+(++index)+"</td><td>"+obj.auditorium.audName+"</td>"+
+                "<td>"+timeFormat(obj.startTime,"yyyy-MM-dd EE hh:mm")+"</td><td><div class='button-group'>"+
+                "<a type='button' class='btn btn-success' href='javascript:void(0)' rel='"+obj.scrId+"'><span class='icon-edit'></span>详情</a>"+
+               "</div></td></tr>");
+        });
+
+        pageNum("#title",7);
+    }
+    function browserRedirect() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        document.writeln("您的浏览设备为：");
+        if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+            document.writeln("phone");
+        } else {
+            document.writeln("pc");
         }
     }
+    browserRedirect();
+
+
 </script>
 </body></html>

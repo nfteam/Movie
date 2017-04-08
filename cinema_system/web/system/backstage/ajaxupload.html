@@ -9,7 +9,6 @@
             $("#btn").on("click",function(){
                 //使用FormData来实现表单的封装和ajax上传
                 var formData = new FormData(document.getElementById("f1"));
-                alert(formData.name)
                 //使用jquery的ajax提交表单
                 $.ajax({
                     url : "ajaxUpload", //请求的url

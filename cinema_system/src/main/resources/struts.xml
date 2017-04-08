@@ -5,8 +5,22 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-    <package name="struts" extends="json-default">
-
+    <constant value="yyyy-MM-dd hh:mm:ss" name="struts.json.dateformat"/>
+    <package name="struts" extends="json-default" namespace="/notice">
+        <!--公告查询-->
+        <action name="findNoticeList" class="noticeAction" method="findNoticeList">
+            <result type="json">
+                <param name="root">list</param>
+            </result>
+        </action>
+        <!--id查询-->
+        <action name="findNoticeById" class="noticeAction" method="findNoticeById">
+            <result type="json">
+                <param name="root">notice</param>
+            </result>
+        </action>
+    </package>
+    <package name="cinema" extends="json-default" namespace="/cinema">
         <action name="citylist" class="cinAction" method="city">
             <result type="json">
                 <param name="root">list</param>
@@ -16,6 +30,8 @@
         <action name="findCinema" class="cinAction" method="findCinema">
             <result type="json">
                 <param name="root">cinema</param>
+                <!--过滤延时加载-->
+                <param name="excludeProperties">.*auditoriums,.*shelves,.*orders,.*auditoriumTypes</param>
             </result>
         </action>
 
@@ -24,6 +40,8 @@
                 <param name="root">message</param>
             </result>
         </action>
+    </package>
+    <package name="upload" extends="json-default">
         <action name="ajaxUpload" class="Action" method="upload">
             <!-- 引用拦截器 -->
             <result type="json">
@@ -40,6 +58,7 @@
         <action name="findType" class="auditoriumTypeAction" method="findAuditoriumType">
             <result type="json">
                 <param name="root">list</param>
+                <param name="excludeProperties">.*auditoriums,.*cinema</param>
             </result>
         </action>
 
@@ -56,10 +75,147 @@
         <action name="findById" class="auditoriumTypeAction" method="findById">
             <result type="json">
                 <param name="root">auditoriumType</param>
+                <param name="excludeProperties">.*auditoriums,.*cinema</param>
             </result>
         </action>
 
         <action name="updateType" class="auditoriumTypeAction" method="update">
+            <result type="json">
+                <param name="root">message</param>
+            </result>
+        </action>
+
+        <action name="addAud" class="auditoriumAction" method="add">
+            <result type="json">
+                <param name="root">message</param>
+            </result>
+        </action>
+
+        <action name="findAudByList" class="auditoriumAction" method="findAuditorByList">
+            <result type="json">
+                <param name="root">list</param>
+                <param name="excludeProperties">.*auditoriumType,.*cinema,.*screeningss</param>
+            </result>
+        </action>
+
+        <action name="delAud" class="auditoriumAction" method="delAud">
+            <result type="json">
+                <param name="root">message</param>
+            </result>
+        </action>
+
+        <action name="findAud" class="auditoriumAction" method="findByAud">
+            <result type="json">
+                <param name="root">auditorium</param>
+                <param name="excludeProperties">.*cinema.city,.*cinema.manager,.*cinema.auditoriums,.*cinema.auditoriumTypes,.*auditoriumType.auditoriums,.*screeningss</param>
+            </result>
+        </action>
+
+        <action name="updateAud" class="auditoriumAction" method="update">
+            <result type="json">
+                <param name="root">message</param>
+            </result>
+        </action>
+        <!--查询电影-->
+        <action name="movieList" class="movieAction" method="movieList">
+            <result type="json">
+                <param name="root">list</param>
+                <param name="excludeProperties">.*shelves,.*comments,.*region.movies,.*type.movies,.*year.movies,.*edition.movie</param>
+            </result>
+        </action>
+        <!--查询类型-->
+        <action name="movieType" class="typeAction" method="findType">
+            <result type="json">
+                <param name="root">list</param>
+                <param name="excludeProperties">.*movies</param>
+            </result>
+        </action>
+        <!--查询年代-->
+        <action name="movieYear" class="yearAction" method="findYear">
+            <result type="json">
+                <param name="root">list</param>
+                <param name="excludeProperties">.*movies</param>
+            </result>
+        </action>
+
+        <!--通过Id查询-->
+        <action name="findMovieById" class="movieAction" method="findMovieById">
+            <result type="json">
+                <param name="root">movie</param>
+                <param name="excludeProperties">.*shelves,.*comments,.*region.movies,.*type.movies,.*year.movies,.*edition.movie</param>
+            </result>
+        </action>
+
+        <!--条件查询-->
+        <action name="findMovieCondition" class="movieAction" method="findMovieByCondition">
+            <result type="json">
+                <param name="root">list</param>
+                <param name="excludeProperties">.*shelves,.*comments,.*region.movies,.*type.movies,.*year.movies,.*edition.movie</param>
+            </result>
+        </action>
+
+        <!--订单查询-->
+        <action name="findOrderList" class="orderAction" method="findOrder">
+            <result type="json">
+                <param name="root">list</param>
+                <param name="excludeProperties">
+                    .*auditoriumType.auditoriums,
+                    .*cinema.auditoriumTypes,
+                    .*cinema.auditoriums,
+                    .*cinema.manager,
+                    .*city.cinema,
+                    .*auditorium.screeningss,
+                    .*screenings.orders,
+                    .*movie.comments,
+                    .*edition.movie,
+                    .*region.movies,
+                    .*movie.shelves,
+                    .*comments,
+                    .*type.movies,
+                    .*year.movies,
+                    .*users.order
+                </param>
+            </result>
+        </action>
+        <!--条件查询-->
+        <action name="findOrderByCondition" class="orderAction" method="findOrderByCondition">
+            <result type="json">
+                <param name="root">list</param>
+                <param name="excludeProperties">
+                    .*auditoriumType.auditoriums,
+                    .*cinema.auditoriumTypes,
+                    .*cinema.auditoriums,
+                    .*cinema.manager,
+                    .*city.cinema,
+                    .*auditorium.screeningss,
+                    .*screenings.orders,
+                    .*movie.comments,
+                    .*edition.movie,
+                    .*region.movies,
+                    .*movie.shelves,
+                    .*comments,
+                    .*type.movies,
+                    .*year.movies,
+                    .*users.order
+                </param>
+            </result>
+        </action>
+        <action name="countSize" class="orderAction" method="OrderSize">
+            <result type="json">
+                <param name="root">pageBean</param>
+            </result>
+        </action>
+        <!--场次查询-->
+        <action name="findScreening" class="screeningAction" method="list">
+            <result type="json">
+                <param name="root">list</param>
+                <param name="excludeProperties">.*orders,.*shelvesSet,.*auditoriumType*,.*cinema*,.*auditorium.screeningss</param>
+            </result>
+        </action>
+
+
+        <!--修改密码-->
+        <action name="updatepassword" class="passwordAction" method="update">
             <result type="json">
                 <param name="root">message</param>
             </result>

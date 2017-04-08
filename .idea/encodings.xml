@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$USER_HOME$/AppData/Local/Temp/HZ$D.625.3347/right.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cinema_system" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cinema_system/web/system/backstage/css/notice.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/domian" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/movieApp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/movieWeb" charset="UTF-8" />

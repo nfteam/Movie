@@ -1,0 +1,51 @@
+
+.tip1 {
+    float: left;
+    width: 50%;
+    height: auto;
+}
+
+.tip-input {
+    position: relative;
+    float: left;
+    margin: 10px 10px;
+    width: 200px;
+    height: 38px;
+}
+
+.tip-container {
+    float: left;
+    margin: 10px 10px;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+    text-align: center;
+    border: 1px solid #F4F4F4;
+}
+
+.tip-container .jia {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    background: url('../images/jia.svg') no-repeat;
+    background-size: 20px 20px;
+}
+
+.house-tip {
+    display: block;
+    border: 1px solid #F4F4F4;
+    width: 200px;
+    height: 38px;
+}
+
+.del {
+    position: absolute;
+    right: 5px;
+    top: 12px;
+    width: 20px;
+    height: 20px;
+    background: url('../images/del.svg') no-repeat;
+    background-size: 20px 20px;
+}
